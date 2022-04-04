@@ -1,7 +1,7 @@
 package entite;
 
-public class client {
-	private int idClient;
+public class Compte {
+	private int id;
 	private String lname;
 	private String fname;
 	private String rue;
@@ -9,8 +9,8 @@ public class client {
 	private String ville;
 	private String codePostal;
 
-	public client(int idClient, String lname, String fname, String rue, int noCivique, String ville, String codePostal) {
-		this.idClient = idClient;
+	public Compte(int idClient, String lname, String fname, String rue, int noCivique, String ville, String codePostal) {
+		this.id = id;
 		this.lname = lname;
 		this.fname = fname;
 		this.rue = rue;
