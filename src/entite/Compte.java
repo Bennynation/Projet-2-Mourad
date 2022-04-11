@@ -90,8 +90,15 @@ public class Compte {
   public String getFullAddresse() {
 	    return fullAddress;
 	  }
-
-	  public void setFullAddresse(String fullAddress) {
+  public void setFullAddresse(String fullAddress) {
 	    this.fullAddress = fullAddress;
 	  }
+  public int getDroit()
+  {
+	  return this.droit;
+  }
+  public void setDroit(int droit)
+  {
+	  this.droit = droit;
+  }
 }
