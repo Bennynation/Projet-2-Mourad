@@ -48,7 +48,7 @@ public class ClasseurClient {
 		Client tmp = null;
 		for(Client q : listClient)
 		{
-			if(q.getFullAddresse().equals(tmp))
+			if(q.getFullAddresse().equals(fullAddresse))
 			{
 				tmp=q;
 				break;
