@@ -10,8 +10,9 @@ public class Compte {
 	private String ville;
 	private String codePostal;
 	private String fullAddress;
-
-	public Compte(int idClient, String lname, String fname, String rue, int noCivique, String ville, String codePostal,String pass) {
+	private int droit;
+	
+	public Compte(int idClient, String lname, String fname, String rue, int noCivique, String ville, String codePostal,String pass,int droit) {
 		this.id = id;
 		this.lname = lname;
 		this.fname = fname;
@@ -21,6 +22,7 @@ public class Compte {
 		this.codePostal = codePostal;
 		this.pass = pass;
 		this.fullAddress=this.noCivique+""+this.rue;
+		this.droit=droit;
 	}
 
   public String getPass() {
