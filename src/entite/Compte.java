@@ -12,7 +12,7 @@ public class Compte {
 	private String fullAddress;
 	private int droit;
 	
-	public Compte(int idClient, String lname, String fname, String rue, int noCivique, String ville, String codePostal,String pass,int droit) {
+	public Compte(int id, String lname, String fname, String rue, int noCivique, String ville, String codePostal,String pass,int droit) {
 		this.id = id;
 		this.lname = lname;
 		this.fname = fname;
