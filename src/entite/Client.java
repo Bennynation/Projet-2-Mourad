@@ -5,10 +5,10 @@ public class Client extends Compte{
 
   private String noPermit;
   private String CarteBank;
-  private double retard;
+  private int retard;
 
-  public Client(String noPermit, String carteBank, double retard,int idClient, String lname, String fname, String rue, int noCivique, String ville, String codePostal, String pass, int droit) {
-    super(idClient,lname,fname,rue,noCivique,ville,codePostal,pass,0);
+  public Client(String user, String noPermit, String carteBank, int retard,int idClient, String lname, String fname, String rue, int noCivique, String ville, String codePostal, String pass, int droit) {
+    super(user,idClient,lname,fname,rue,noCivique,ville,codePostal,pass,0);
     this.noPermit = noPermit;
     CarteBank = carteBank;
     this.retard = retard;
@@ -30,11 +30,16 @@ public class Client extends Compte{
     CarteBank = carteBank;
   }
 
-  public double getRetard() {
+  public int getRetard() {
     return retard;
   }
 
-  public void setRetard(double retard) {
+  public void setRetard(int retard) {
     this.retard = retard;
   }
+  
+	public int getDroit()
+	{
+		return super.getDroit();
+	}
 }

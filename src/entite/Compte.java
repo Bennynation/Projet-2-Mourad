@@ -10,10 +10,12 @@ public class Compte {
 	private String ville;
 	private String codePostal;
 	private String fullAddress;
+	private String NomUtilisateur;
 	private int droit;
 	
-	public Compte(int id, String lname, String fname, String rue, int noCivique, String ville, String codePostal,String pass,int droit) {
-		this.id = id;
+	public Compte(String userCo,int idClient, String lname, String fname, String rue, int noCivique, String ville, String codePostal,String pass,int droit) {
+		this.NomUtilisateur = userCo;
+		this.id = idClient;
 		this.lname = lname;
 		this.fname = fname;
 		this.rue = rue;
@@ -24,6 +26,14 @@ public class Compte {
 		this.fullAddress=this.noCivique+""+this.rue;
 		this.droit=droit;
 	}
+	
+	public String getNomUtilisateur() {
+	    return NomUtilisateur;
+	  }
+
+	  public void setNomUtilisateur(String u) {
+	    this.NomUtilisateur = u;
+	  }
 
   public String getPass() {
     return pass;
@@ -97,8 +107,14 @@ public class Compte {
   {
 	  return this.droit;
   }
-  public void setDroit(int droit)
+  
+  public int getRetard()
   {
-	  this.droit = droit;
+	  return 0;
   }
+  
+  public String toString() {
+		return fname + " " + lname;
+  }
+
 }
