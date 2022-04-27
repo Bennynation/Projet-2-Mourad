@@ -6,7 +6,6 @@ import javax.swing.JTextField;
 import fenetres.MenuPrincipal;
 
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import java.awt.Font;
 import javax.swing.JPasswordField;

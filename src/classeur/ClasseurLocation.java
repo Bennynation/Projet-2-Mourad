@@ -11,14 +11,14 @@ import entite.Reservation;
 import entite.Vehicules;
 
 public class ClasseurLocation {
-	static List<Location> listlocation = new ArrayList<>();
+	private List<Location> listlocation = new ArrayList<>();
 	
 	public void addCompte(Location loca)
 	{
 		listlocation.add(loca);
 	}
 	
-	public static boolean verifDateIdVehicule(int idV, Date dateD, Date dateF) {
+	public boolean verifDateIdVehicule(int idV, Date dateD, Date dateF) {
 		for (Location l : listlocation) 
 			{ 
 			if (l.getIdVehicule() == idV) {
@@ -33,7 +33,7 @@ public class ClasseurLocation {
 		return true;
 	}
 	
-	public static List<Vehicules> verifLocation(List<Vehicules> listV, Date dateF, Date dateD){
+	public List<Vehicules> verifLocation(List<Vehicules> listV, Date dateF, Date dateD){
 		List<Vehicules> listClear = new ArrayList<>();
 		
 		for(Vehicules v: listV) {

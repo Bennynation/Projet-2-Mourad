@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -17,11 +17,6 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import com.toedter.calendar.JDateChooser;
-
-import classeur.ClasseurLocation;
-import classeur.ClasseurReservation;
-import classeur.InventaireVehicules;
-import entite.Client;
 import entite.Compte;
 import entite.Vehicules;
 import fenetres.MenuPrincipal;
@@ -29,11 +24,9 @@ import fenetres.MenuPrincipal;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
-import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-import javax.swing.table.DefaultTableModel;
 import java.awt.Font;
 
 public class ReservationPanel extends JPanel {
@@ -136,8 +129,8 @@ public class ReservationPanel extends JPanel {
 					if (dateCompare()) {
 						Compte c = (Compte) comboBox_1.getSelectedItem();
 						if (c.getDroit() == 0) {
-							if (InventaireVehicules.dispo(id) && ClasseurReservation.verifDateIdVehicule(id, dtRDe, dtRA) && ClasseurLocation.verifDateIdVehicule(id, dtRDe, dtRA)) {
-								MenuPrincipal.listResrv.ajouterRéservation(c.getId(), id, dtRA, dtRDe);
+							if (MenuPrincipal.listVehicule.dispo(id) && MenuPrincipal.listResrv.verifDateIdVehicule(id, dtRDe, dtRA) && MenuPrincipal.listLocation.verifDateIdVehicule(id, dtRDe, dtRA)) {
+								MenuPrincipal.listContrat.addContrat(c.getId(),MenuPrincipal.listResrv.ajouterRéservation(c.getId(), id, dtRA, dtRDe));
 								MenuPrincipal.Confirmation("Vous avez faite une réservation");
 								resetDate();
 								btnRechercher.doClick();
@@ -182,7 +175,7 @@ public class ReservationPanel extends JPanel {
 					switch(comboBox.getSelectedIndex()) {
 					case 0:
 				        DefaultListModel listModel = new DefaultListModel () {
-							public List<Vehicules> values = ClasseurReservation.verifReserv(ClasseurLocation.verifLocation(InventaireVehicules.afficherTousVehiculesDispo(),dtDe.getDate(),dtA.getDate()),dtDe.getDate(),dtA.getDate());
+							public List<Vehicules> values = MenuPrincipal.listResrv.verifReserv(MenuPrincipal.listLocation.verifLocation(MenuPrincipal.listVehicule.afficherTousVehiculesDispo(),dtDe.getDate(),dtA.getDate()),dtDe.getDate(),dtA.getDate());
 							public int getSize() {
 								return values.size();
 							}
@@ -195,7 +188,7 @@ public class ReservationPanel extends JPanel {
 						break;
 					case 1:
 				        DefaultListModel listModel1 = new DefaultListModel () {
-							public List<Vehicules> values = ClasseurReservation.verifReserv(ClasseurLocation.verifLocation(InventaireVehicules.afficherSimpleVehiculesDispo(),dtDe.getDate(),dtA.getDate()),dtDe.getDate(),dtA.getDate());
+							public List<Vehicules> values = MenuPrincipal.listResrv.verifReserv(MenuPrincipal.listLocation.verifLocation(MenuPrincipal.listVehicule.afficherSimpleVehiculesDispo(),dtDe.getDate(),dtA.getDate()),dtDe.getDate(),dtA.getDate());
 							public int getSize() {
 								return values.size();
 							}
@@ -206,7 +199,7 @@ public class ReservationPanel extends JPanel {
 						break;
 					case 2:
 				        DefaultListModel listModel2 = new DefaultListModel () {
-							public List<Vehicules> values = ClasseurReservation.verifReserv(ClasseurLocation.verifLocation(InventaireVehicules.afficherUtiliVehiculesDispo(),dtDe.getDate(),dtA.getDate()),dtDe.getDate(),dtA.getDate());
+							public List<Vehicules> values = MenuPrincipal.listResrv.verifReserv(MenuPrincipal.listLocation.verifLocation(MenuPrincipal.listVehicule.afficherUtiliVehiculesDispo(),dtDe.getDate(),dtA.getDate()),dtDe.getDate(),dtA.getDate());
 							public int getSize() {
 								return values.size();
 							}
@@ -217,7 +210,7 @@ public class ReservationPanel extends JPanel {
 						break;
 					case 3:
 				        DefaultListModel listModel3 = new DefaultListModel () {
-							public List<Vehicules> values = ClasseurReservation.verifReserv(ClasseurLocation.verifLocation(InventaireVehicules.afficherPrestigeVehiculesDispo(),dtDe.getDate(),dtA.getDate()),dtDe.getDate(),dtA.getDate());
+							public List<Vehicules> values = MenuPrincipal.listResrv.verifReserv(MenuPrincipal.listLocation.verifLocation(MenuPrincipal.listVehicule.afficherPrestigeVehiculesDispo(),dtDe.getDate(),dtA.getDate()),dtDe.getDate(),dtA.getDate());
 							public int getSize() {
 								return values.size();
 							}
@@ -265,7 +258,7 @@ public class ReservationPanel extends JPanel {
 		lVehicules.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		lVehicules.setBounds(20, 265, 222, 405);
 		lVehicules.setModel(new DefaultListModel() {
-			public List<Vehicules> values = ClasseurReservation.verifReserv(ClasseurLocation.verifLocation(InventaireVehicules.afficherTousVehiculesDispo(),dtDe.getDate(),dtA.getDate()),dtDe.getDate(),dtA.getDate());
+			public List<Vehicules> values = MenuPrincipal.listResrv.verifReserv(MenuPrincipal.listLocation.verifLocation(MenuPrincipal.listVehicule.afficherTousVehiculesDispo(),dtDe.getDate(),dtA.getDate()),dtDe.getDate(),dtA.getDate());
 			public int getSize() {
 				return values.size();
 			}

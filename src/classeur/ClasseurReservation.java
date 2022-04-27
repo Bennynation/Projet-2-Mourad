@@ -10,10 +10,10 @@ import entite.Vehicules;
 import fenetres.MenuPrincipal;
 
 public class ClasseurReservation {
-	static List<Reservation> listeReserv = new ArrayList<Reservation>();
+	 private List<Reservation> listeReserv = new ArrayList<Reservation>();
 
 
-	public void ajouterRéservation(int Compte,int idVehicule,Date dateD,Date dateF) {
+	public int ajouterRéservation(int Compte,int idVehicule,Date dateD,Date dateF) {
 		int i = 0, random_int = (int)Math.floor(Math.random()*(10000-100+1)+100);   
 		while (i == 0) {
 			if (this.verifId(random_int)) {
@@ -25,6 +25,7 @@ public class ClasseurReservation {
 			}
 				
 		}	
+		return random_int;
 	}
 	
 	public boolean verifId(int i) {
@@ -37,7 +38,7 @@ public class ClasseurReservation {
 		return true;
 	}
 	
-	public static boolean verifDateIdVehicule(int idV, Date dateD, Date dateF) {
+	public boolean verifDateIdVehicule(int idV, Date dateD, Date dateF) {
 		for (Reservation r : listeReserv) 
 			{ 
 				
@@ -52,7 +53,7 @@ public class ClasseurReservation {
 		return true;
 		}
 		
-	public static List<Vehicules> verifReserv(List<Vehicules> listV, Date dateF, Date dateD){
+	public List<Vehicules> verifReserv(List<Vehicules> listV, Date dateF, Date dateD){
 		List<Vehicules> listClear = new ArrayList<>();
 		
 		for(Vehicules v: listV) {

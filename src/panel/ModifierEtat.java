@@ -5,12 +5,10 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
-import classeur.InventaireVehicules;
 import entite.Vehicules;
 import fenetres.MenuPrincipal;
 
@@ -19,11 +17,9 @@ import javax.swing.DefaultListModel;
 
 import java.awt.Font;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.List;
 import java.awt.event.ActionEvent;
 import javax.swing.JList;
-import javax.swing.AbstractListModel;
 
 public class ModifierEtat extends JPanel {
 	private JTextField txtNom;
@@ -104,7 +100,7 @@ public class ModifierEtat extends JPanel {
 				if (!txtNom.getText().equals("")) {
 					if (!txtDesc.getText().equals(desc) || !cbEtat.getSelectedItem().toString().equals(etat)) {
 						if (MenuPrincipal.compteUser.getDroit() == 1) {
-							InventaireVehicules.modifierEtat(id, cbEtat.getSelectedItem().toString(), txtDesc.getText());
+							MenuPrincipal.listVehicule.modifierEtat(id, cbEtat.getSelectedItem().toString(), txtDesc.getText());
 							MenuPrincipal.Confirmation("Vous avez faite une modification");
 							btnRechercher.doClick();
 						}
@@ -127,7 +123,7 @@ public class ModifierEtat extends JPanel {
 				switch(comboBox.getSelectedIndex()) {
 					case 0:
 				        DefaultListModel listModel = new DefaultListModel () {
-							public List<Vehicules> values = InventaireVehicules.afficherTousVehicules();
+							public List<Vehicules> values = MenuPrincipal.listVehicule.afficherTousVehicules();
 							public int getSize() {
 								return values.size();
 							}
@@ -140,7 +136,7 @@ public class ModifierEtat extends JPanel {
 						break;
 					case 1:
 				        DefaultListModel listModel1 = new DefaultListModel () {
-							public List<Vehicules> values = InventaireVehicules.afficherSimpleVehicules();
+							public List<Vehicules> values = MenuPrincipal.listVehicule.afficherSimpleVehicules();
 							public int getSize() {
 								return values.size();
 							}
@@ -151,7 +147,7 @@ public class ModifierEtat extends JPanel {
 						break;
 					case 2:
 				        DefaultListModel listModel2 = new DefaultListModel () {
-							public List<Vehicules> values = InventaireVehicules.afficherUtiliVehicules();
+							public List<Vehicules> values = MenuPrincipal.listVehicule.afficherUtiliVehicules();
 							public int getSize() {
 								return values.size();
 							}
@@ -162,7 +158,7 @@ public class ModifierEtat extends JPanel {
 						break;
 					case 3:
 				        DefaultListModel listModel3 = new DefaultListModel () {
-							public List<Vehicules> values = InventaireVehicules.afficherPrestigeVehicules();
+							public List<Vehicules> values = MenuPrincipal.listVehicule.afficherPrestigeVehicules();
 							public int getSize() {
 								return values.size();
 							}
@@ -217,7 +213,7 @@ public class ModifierEtat extends JPanel {
 		
 	
 		lVehicules.setModel(new DefaultListModel() {
-			public List<Vehicules> values = InventaireVehicules.afficherTousVehicules();
+			public List<Vehicules> values = MenuPrincipal.listVehicule.afficherTousVehicules();
 			public int getSize() {
 				return values.size();
 			}

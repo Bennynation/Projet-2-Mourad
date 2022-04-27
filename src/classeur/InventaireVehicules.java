@@ -7,18 +7,18 @@ import entite.Compte;
 import entite.Vehicules;
 
 public class InventaireVehicules {
-	static List<Vehicules> listeVehicule = new ArrayList<>();
+	 private List<Vehicules> listeVehicule = new ArrayList<>();
 	
 	public void addVehicule(Vehicules vehi)
 	{
 		listeVehicule.add(vehi);
 	}	
 	
-	public static List<Vehicules> afficherTousVehicules() {		
+	public  List<Vehicules> afficherTousVehicules() {		
 		return listeVehicule;	
 	}
 	
-	public static boolean dispo(int idVehicule){	
+	public  boolean dispo(int idVehicule){	
 		
 		for (Vehicules v : listeVehicule) 
 		{ 
@@ -32,7 +32,7 @@ public class InventaireVehicules {
 		return false;
 	}
 	
-	public static List<Vehicules> afficherTousVehiculesDispo() {
+	public  List<Vehicules> afficherTousVehiculesDispo() {
 		List<Vehicules> listeEnvoie = new ArrayList<>();
 		 
 			for (Vehicules v : listeVehicule) 
@@ -43,7 +43,7 @@ public class InventaireVehicules {
 		return listeEnvoie;	
 	}
 	
-	public static List<Vehicules> afficherSimpleVehicules() {
+	public  List<Vehicules> afficherSimpleVehicules() {
 		List<Vehicules> listeEnvoie = new ArrayList<>();
 		 
 			for (Vehicules v : listeVehicule) 
@@ -54,7 +54,7 @@ public class InventaireVehicules {
 		return listeEnvoie;	
 	}
 	
-	public static List<Vehicules> afficherSimpleVehiculesDispo() {
+	public  List<Vehicules> afficherSimpleVehiculesDispo() {
 		List<Vehicules> listeEnvoie = new ArrayList<>();
 		 
 			for (Vehicules v : listeVehicule) 
@@ -65,7 +65,7 @@ public class InventaireVehicules {
 		return listeEnvoie;	
 	}
 	
-	public static List<Vehicules> afficherUtiliVehicules() {
+	public  List<Vehicules> afficherUtiliVehicules() {
 		List<Vehicules> listeEnvoie = new ArrayList<>();
 		 
 			for (Vehicules v : listeVehicule) 
@@ -76,7 +76,7 @@ public class InventaireVehicules {
 		return listeEnvoie;	
 	}
 	
-	public static List<Vehicules> afficherUtiliVehiculesDispo() {
+	public  List<Vehicules> afficherUtiliVehiculesDispo() {
 		List<Vehicules> listeEnvoie = new ArrayList<>();
 		 
 			for (Vehicules v : listeVehicule) 
@@ -87,7 +87,7 @@ public class InventaireVehicules {
 		return listeEnvoie;	
 	}
 	
-	public static List<Vehicules> afficherPrestigeVehicules() {
+	public  List<Vehicules> afficherPrestigeVehicules() {
 		List<Vehicules> listeEnvoie = new ArrayList<>();
 		 
 			for (Vehicules v : listeVehicule) 
@@ -99,7 +99,7 @@ public class InventaireVehicules {
 	}
 
 	
-	public static List<Vehicules> afficherPrestigeVehiculesDispo() {
+	public List<Vehicules> afficherPrestigeVehiculesDispo() {
 		List<Vehicules> listeEnvoie = new ArrayList<>();
 		 
 			for (Vehicules v : listeVehicule) 
@@ -110,7 +110,7 @@ public class InventaireVehicules {
 		return listeEnvoie;	
 	}
 	
-	public static void modifierEtat(int id,String etat,String desc) {
+	public void modifierEtat(int id,String etat,String desc) {
 		for (Vehicules v : listeVehicule) 
 		{ 
 			if (v.getId() == id) {

@@ -14,6 +14,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import classeur.ClasseurCompte;
+import classeur.ClasseurContrat;
 import classeur.ClasseurLocation;
 import classeur.ClasseurReservation;
 import classeur.InventaireVehicules;
@@ -41,6 +42,7 @@ public class MenuPrincipal extends JFrame {
 	static public ClasseurCompte listCompte = new ClasseurCompte();
 	static public ClasseurReservation listResrv = new ClasseurReservation();
 	static public ClasseurLocation listLocation = new ClasseurLocation();
+	static public ClasseurContrat listContrat = new ClasseurContrat();
 	static public InventaireVehicules listVehicule = new InventaireVehicules();
 	static JButton btnNewButton = new JButton("Connexion");
 	static JButton btnModifierLtatDun = new JButton("Modifier l'\u00E9tat\r\r\n d'un v\u00E9hicule");

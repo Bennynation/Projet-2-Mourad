@@ -2,15 +2,15 @@ package entite;
 import java.util.Date;
 
 public class Reservation {
-	private int idL;
+	private int idR;
 	private int idV;
 	private int idC;
 	private Date dReservD;
 	private Date dReservF;
 
 
-	public Reservation(int iL, int iV, int iC, Date dateR, Date dateF) {
-		idL = iL;
+	public Reservation(int iR, int iV, int iC, Date dateR, Date dateF) {
+		idR = iR;
 		idV = iV;
 		idC = iC;
 		dReservD = dateR;
@@ -19,7 +19,7 @@ public class Reservation {
 
 
 	public int getIdL() {
-		return idL;
+		return idR;
 	}
 
 

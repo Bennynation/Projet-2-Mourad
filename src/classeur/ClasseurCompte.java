@@ -10,7 +10,7 @@ import entite.Manager;
 import entite.Prepose;
 
 public class ClasseurCompte {
-	static List<Compte> listCompte = new ArrayList<>();
+	private List<Compte> listCompte = new ArrayList<>();
 	
 	
 	public List<Compte> getListe()
