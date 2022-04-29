@@ -6,7 +6,10 @@ import java.awt.Label;
 import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.swing.JPanel;
@@ -34,6 +37,7 @@ public class ModificationReservation extends JPanel {
 	TextField NomClient = new TextField();
 	TextField NomVehicule = new TextField();
 	java.awt.List list = new java.awt.List();
+	Choice choice = new Choice();
 	/**
 	 * Create the panel.
 	 */
@@ -48,7 +52,7 @@ public class ModificationReservation extends JPanel {
 		label.setBounds(52, 94, 123, 22);
 		add(label);
 		
-		Choice choice = new Choice();
+		
 		choice.setBounds(52, 68, 172, 20);
 		add(choice);
 		choice.add("Nom du Véhicule");
@@ -69,29 +73,29 @@ public class ModificationReservation extends JPanel {
 		add(label_1);
 		
 		
-		NomClient.setBounds(355, 150, 230, 22);
+		NomClient.setBounds(306, 150, 230, 22);
 		add(NomClient);
 		
 		
-		NomVehicule.setBounds(355, 220, 230, 22);
+		NomVehicule.setBounds(306, 208, 230, 22);
 		add(NomVehicule);
 		
 		Label label_2 = new Label("Nom du client");
-		label_2.setBounds(355, 122, 70, 22);
+		label_2.setBounds(306, 122, 123, 22);
 		add(label_2);
 		
 		Label label_3 = new Label("V\u00E9hicule r\u00E9server");
-		label_3.setBounds(355, 192, 94, 22);
+		label_3.setBounds(306, 180, 94, 22);
 		add(label_3);
 		
 		Label label_4 = new Label("Date de r\u00E9servation");
-		label_4.setBounds(355, 248, 230, 22);
+		label_4.setBounds(306, 235, 230, 22);
 		add(label_4);
 		
 		
 		
 		dtDe.setDateFormatString("dd/MM/yyyy");
-		dtDe.setBounds(355, 276, 222, 20);
+		dtDe.setBounds(306, 263, 222, 20);
 		add(dtDe);
 		
 		
@@ -100,6 +104,7 @@ public class ModificationReservation extends JPanel {
 	}
 	public void MoteurDerecherche(int champ)
 	{
+		list.removeAll();
 		String txt= ValeurRecherche.getText();
 		if(txt!=null || txt.equals(""))
 		{
@@ -112,10 +117,24 @@ public class ModificationReservation extends JPanel {
 				if(r.getVehicules().getNomVehicule().equals(txt))
 				{
 					list.add(r.getNomReservation());
+					
 				}
-			}
+				list.addItemListener(new ItemListener() {
+					public void itemStateChanged(ItemEvent e) {
+						Calendar calender = Calendar.getInstance();
+						
+						NomClient.setText(listResrvationFantome.get(list.getSelectedIndex()).getClient().getFname()+", "+listResrvationFantome.get(list.getSelectedIndex()).getClient().getLname());
+						NomVehicule.setText(listResrvationFantome.get(list.getSelectedIndex()).getVehicules().getNomVehicule());
+						calender.setTime(listResrvationFantome.get(list.getSelectedIndex()).getdReservD());
+						dtDe.setCalendar(calender);
+					}
+					}
+				);
+				}
 			break;
-		}
+			}
+			
+	
 		case 1:
 		{
 			break;
@@ -123,6 +142,10 @@ public class ModificationReservation extends JPanel {
 		
 		}
 	}
+	}
+	public void resetList()
+	{
+	
 	}
 	public void GenerationListFantome()
 	{
