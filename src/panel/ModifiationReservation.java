@@ -24,7 +24,7 @@ public class ModifiationReservation extends JPanel {
 		setLayout(null);
 		
 		TextField textField = new TextField();
-		textField.setBounds(52, 122, 248, 22);
+		textField.setBounds(52, 122, 261, 22);
 		add(textField);
 		
 		Label label = new Label("Mots cl\u00E9s de recherche");
@@ -41,7 +41,7 @@ public class ModifiationReservation extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		button.setBounds(230, 68, 70, 22);
+		button.setBounds(230, 68, 83, 22);
 		add(button);
 		
 		Label label_1 = new Label("Champ de recherche");
