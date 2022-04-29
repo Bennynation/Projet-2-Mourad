@@ -201,7 +201,7 @@ public class ModifierEtat extends JPanel {
 		
 		JLabel lblModifierLtatDun = new JLabel("Modifier l'\u00E9tat d'un v\u00E9hicule");
 		lblModifierLtatDun.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblModifierLtatDun.setBounds(201, 22, 222, 14);
+		lblModifierLtatDun.setBounds(314, 22, 222, 14);
 		add(lblModifierLtatDun);
 		
 		cbEtat.setModel(new DefaultComboBoxModel(new String[] {"En service", "hors service"}));

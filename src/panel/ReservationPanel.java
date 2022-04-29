@@ -255,9 +255,9 @@ public class ReservationPanel extends JPanel {
 		lbType.setBounds(258, 625, 148, 14);
 		add(lbType);
 		
-		JLabel lblRservation = new JLabel("R\u00E9servation");
+		JLabel lblRservation = new JLabel("Faire une r\u00E9servation");
 		lblRservation.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblRservation.setBounds(258, 28, 148, 14);
+		lblRservation.setBounds(302, 27, 148, 14);
 		add(lblRservation);
 		
 		
