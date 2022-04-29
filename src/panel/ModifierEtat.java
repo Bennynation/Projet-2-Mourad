@@ -21,6 +21,13 @@ import java.util.List;
 import java.awt.event.ActionEvent;
 import javax.swing.JList;
 
+////////////////////////////////////////////////////////////////////
+// Cas d'utilisation Modification de l'état d'un véhicule
+// Benoit Légaré
+////////////////////////////////////////////////////////////////////
+
+
+
 public class ModifierEtat extends JPanel {
 	private JTextField txtNom;
 	private JTextField txtAcc;
@@ -32,17 +39,17 @@ public class ModifierEtat extends JPanel {
 	private String etat;
 	private String desc;
 	private int id;
-	public JList lVehicules = new JList();
-	public JComboBox comboBox = new JComboBox();
-	public JComboBox cbEtat = new JComboBox();
-	public JButton btnRechercher = new JButton("Rechercher");
+	private JList lVehicules = new JList();
+	private JComboBox cbType = new JComboBox();
+	private JComboBox cbEtat = new JComboBox();
+	private JButton btnRechercher = new JButton("Rechercher");
 	
 	public ModifierEtat() {
 		setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Nom de v\u00E9hicule");
-		lblNewLabel.setBounds(258, 128, 148, 14);
-		add(lblNewLabel);
+		JLabel lbNom = new JLabel("Nom de v\u00E9hicule");
+		lbNom.setBounds(258, 128, 148, 14);
+		add(lbNom);
 		
 		txtNom = new JTextField();
 		txtNom.setEditable(false);
@@ -50,9 +57,9 @@ public class ModifierEtat extends JPanel {
 		txtNom.setBounds(258, 153, 295, 20);
 		add(txtNom);
 		
-		JLabel lblNewLabel_1 = new JLabel("Accessoires");
-		lblNewLabel_1.setBounds(258, 184, 148, 14);
-		add(lblNewLabel_1);
+		JLabel lbAcc = new JLabel("Accessoires");
+		lbAcc.setBounds(258, 184, 148, 14);
+		add(lbAcc);
 		
 		txtAcc = new JTextField();
 		txtAcc.setEditable(false);
@@ -60,9 +67,9 @@ public class ModifierEtat extends JPanel {
 		txtAcc.setBounds(258, 209, 295, 20);
 		add(txtAcc);
 		
-		JLabel lblNewLabel_2 = new JLabel("Moteur");
-		lblNewLabel_2.setBounds(258, 240, 148, 14);
-		add(lblNewLabel_2);
+		JLabel lbMoteur = new JLabel("Moteur");
+		lbMoteur.setBounds(258, 240, 148, 14);
+		add(lbMoteur);
 		
 		txtMot = new JTextField();
 		txtMot.setEditable(false);
@@ -70,9 +77,9 @@ public class ModifierEtat extends JPanel {
 		txtMot.setBounds(258, 265, 295, 20);
 		add(txtMot);
 		
-		JLabel lblNewLabel_3 = new JLabel("Nombre de place");
-		lblNewLabel_3.setBounds(258, 296, 148, 14);
-		add(lblNewLabel_3);
+		JLabel lbNb = new JLabel("Nombre de place");
+		lbNb.setBounds(258, 296, 148, 14);
+		add(lbNb);
 		
 		txtNb = new JTextField();
 		txtNb.setEditable(false);
@@ -80,9 +87,9 @@ public class ModifierEtat extends JPanel {
 		txtNb.setBounds(258, 321, 295, 20);
 		add(txtNb);
 		
-		JLabel lblNewLabel_4 = new JLabel("Tarif");
-		lblNewLabel_4.setBounds(258, 352, 148, 14);
-		add(lblNewLabel_4);
+		JLabel lbTarif = new JLabel("Tarif");
+		lbTarif.setBounds(258, 352, 148, 14);
+		add(lbTarif);
 		
 		txtTarif = new JTextField();
 		txtTarif.setEditable(false);
@@ -90,15 +97,16 @@ public class ModifierEtat extends JPanel {
 		txtTarif.setBounds(258, 377, 295, 20);
 		add(txtTarif);
 		
-		JLabel lblNewLabel_5 = new JLabel("\u00C9tat");
-		lblNewLabel_5.setBounds(258, 408, 148, 14);
-		add(lblNewLabel_5);
+		JLabel lbEtat = new JLabel("\u00C9tat");
+		lbEtat.setBounds(258, 408, 148, 14);
+		add(lbEtat);
 		
 		JButton btnModifier = new JButton("Modifier");
 		btnModifier.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (!txtNom.getText().equals("")) {
-					if (!txtDesc.getText().equals(desc) || !cbEtat.getSelectedItem().toString().equals(etat)) {
+				if (!txtNom.getText().equals("")) { //Vérifie la sélection d'un véhicule
+					if (!txtDesc.getText().equals(desc) || !cbEtat.getSelectedItem().toString().equals(etat)) //Vérifie s'il y a eu un changement
+						{
 						if (MenuPrincipal.compteUser.getDroit() == 1) {
 							MenuPrincipal.listVehicule.modifierEtat(id, cbEtat.getSelectedItem().toString(), txtDesc.getText());
 							MenuPrincipal.Confirmation("Vous avez faite une modification");
@@ -106,7 +114,7 @@ public class ModifierEtat extends JPanel {
 						}
 					}
 					else {
-						MenuPrincipal.erreur("Veuillez faire une modification avant de modifier");
+						MenuPrincipal.erreur("Veuillez faire une modification avant de modifier"); 
 					}
 				}
 				else {
@@ -120,10 +128,10 @@ public class ModifierEtat extends JPanel {
 		
 		btnRechercher.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				switch(comboBox.getSelectedIndex()) {
+				switch(cbType.getSelectedIndex()) {
 					case 0:
-				        DefaultListModel listModel = new DefaultListModel () {
-							public List<Vehicules> values = MenuPrincipal.listVehicule.afficherTousVehicules();
+				        DefaultListModel listModel = new DefaultListModel () { //Affiche tous les véhicules
+				        	private List<Vehicules> values = MenuPrincipal.listVehicule.afficherTousVehicules();
 							public int getSize() {
 								return values.size();
 							}
@@ -135,8 +143,8 @@ public class ModifierEtat extends JPanel {
 				        lVehicules.setModel(listModel);
 						break;
 					case 1:
-				        DefaultListModel listModel1 = new DefaultListModel () {
-							public List<Vehicules> values = MenuPrincipal.listVehicule.afficherSimpleVehicules();
+				        DefaultListModel listModel1 = new DefaultListModel () { //Affiche tous les véhicules simple
+				        	private List<Vehicules> values = MenuPrincipal.listVehicule.afficherSimpleVehicules();
 							public int getSize() {
 								return values.size();
 							}
@@ -146,8 +154,8 @@ public class ModifierEtat extends JPanel {
 						lVehicules.setModel(listModel1);
 						break;
 					case 2:
-				        DefaultListModel listModel2 = new DefaultListModel () {
-							public List<Vehicules> values = MenuPrincipal.listVehicule.afficherUtiliVehicules();
+				        DefaultListModel listModel2 = new DefaultListModel () { //Affiche tous les véhicules utilitaires
+				        	private List<Vehicules> values = MenuPrincipal.listVehicule.afficherUtiliVehicules();
 							public int getSize() {
 								return values.size();
 							}
@@ -157,8 +165,8 @@ public class ModifierEtat extends JPanel {
 						lVehicules.setModel(listModel2);
 						break;
 					case 3:
-				        DefaultListModel listModel3 = new DefaultListModel () {
-							public List<Vehicules> values = MenuPrincipal.listVehicule.afficherPrestigeVehicules();
+				        DefaultListModel listModel3 = new DefaultListModel () { //Affiche tous les véhicules prestige
+				        	private List<Vehicules> values = MenuPrincipal.listVehicule.afficherPrestigeVehicules();
 							public int getSize() {
 								return values.size();
 							}
@@ -174,9 +182,9 @@ public class ModifierEtat extends JPanel {
 		btnRechercher.setBounds(61, 94, 116, 23);
 		add(btnRechercher);
 		
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Tout", "Simple", "Prestige", "Utilitaire"}));
-		comboBox.setBounds(61, 61, 171, 22);
-		add(comboBox);
+		cbType.setModel(new DefaultComboBoxModel(new String[] {"Tout", "Simple", "Prestige", "Utilitaire"})); //Contient tous les types de véhicule
+		cbType.setBounds(61, 61, 171, 22);
+		add(cbType);
 		
 		JLabel lblTypes = new JLabel("Types");
 		lblTypes.setBounds(10, 58, 50, 14);
@@ -187,9 +195,9 @@ public class ModifierEtat extends JPanel {
 		txtDesc.setBounds(258, 487, 295, 20);
 		add(txtDesc);
 		
-		JLabel lblNewLabel_5_1 = new JLabel("Description d'\u00E9tat");
-		lblNewLabel_5_1.setBounds(258, 462, 148, 14);
-		add(lblNewLabel_5_1);
+		JLabel lbDesc = new JLabel("Description d'\u00E9tat");
+		lbDesc.setBounds(258, 462, 148, 14);
+		add(lbDesc);
 		
 		JLabel lblModifierLtatDun = new JLabel("Modifier l'\u00E9tat d'un v\u00E9hicule");
 		lblModifierLtatDun.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -206,14 +214,14 @@ public class ModifierEtat extends JPanel {
 		txtType.setBounds(258, 539, 295, 20);
 		add(txtType);
 		
-		JLabel lblNewLabel_5_1_1 = new JLabel("Type");
-		lblNewLabel_5_1_1.setBounds(258, 514, 148, 14);
-		add(lblNewLabel_5_1_1);
+		JLabel lbType = new JLabel("Type");
+		lbType.setBounds(258, 514, 148, 14);
+		add(lbType);
 		lVehicules.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		
 	
 		lVehicules.setModel(new DefaultListModel() {
-			public List<Vehicules> values = MenuPrincipal.listVehicule.afficherTousVehicules();
+			private List<Vehicules> values = MenuPrincipal.listVehicule.afficherTousVehicules();
 			public int getSize() {
 				return values.size();
 			}
@@ -225,7 +233,7 @@ public class ModifierEtat extends JPanel {
 		lVehicules.getSelectionModel().addListSelectionListener(new ListSelectionListener () {
 
 			@Override
-			public void valueChanged(ListSelectionEvent e) {
+			public void valueChanged(ListSelectionEvent e) { //Lors du changement de l'index dans le tableau de véhicules on affiche les bonnes informations.
 				Vehicules v = (Vehicules) lVehicules.getSelectedValue();
 				if (v != null) {
 					txtNom.setText(v.getNomVehicule());
@@ -253,7 +261,7 @@ public class ModifierEtat extends JPanel {
 
 	}
 	
-	public void clearChamps() {
+	public void clearChamps() { //Remets les champs vides.
 		txtNom.setText("");
 		txtAcc.setText("");
 		txtMot.setText("");

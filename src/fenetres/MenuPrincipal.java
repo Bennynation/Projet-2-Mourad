@@ -35,18 +35,18 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class MenuPrincipal extends JFrame {
-	ReservationPanel reserv = new ReservationPanel();
-	ModifierEtat modifEt = new ModifierEtat();
-	static Connexion co = new Connexion();
+	private ReservationPanel reserv = new ReservationPanel();
+	private ModifierEtat modifEt = new ModifierEtat();
+	private static Connexion co = new Connexion();
 	public static Compte compteUser;
 	static public ClasseurCompte listCompte = new ClasseurCompte();
 	static public ClasseurReservation listResrv = new ClasseurReservation();
 	static public ClasseurLocation listLocation = new ClasseurLocation();
-	static public ClasseurContrat listContrat = new ClasseurContrat();
-	static public InventaireVehicules listVehicule = new InventaireVehicules();
-	static JButton btnNewButton = new JButton("Connexion");
-	static JButton btnModifierLtatDun = new JButton("Modifier l'\u00E9tat\r\r\n d'un v\u00E9hicule");
-	static JButton btnFaireUneRservation = new JButton("Faire une r\u00E9servation");
+	static public ClasseurContrat listContrat = new ClasseurContrat();	
+ 	static public InventaireVehicules listVehicule = new InventaireVehicules();
+	private static JButton btnNewButton = new JButton("Connexion");
+	private static JButton btnModifierLtatDun = new JButton("Modifier l'\u00E9tat\r\r\n d'un v\u00E9hicule");
+	private static JButton btnFaireUneRservation = new JButton("Faire une r\u00E9servation");
 	private static JPanel contentPane;
 	
 	
@@ -83,7 +83,7 @@ public class MenuPrincipal extends JFrame {
 
 
 
-	public void reset() {
+	public void reset() { //Fait disparaitre les jPanel
 		contentPane.remove(co);
 		contentPane.remove(reserv);
 		contentPane.remove(modifEt);
@@ -91,24 +91,21 @@ public class MenuPrincipal extends JFrame {
         repaint();	
 	}
 	
-	public void load(JPanel p) {
+	public void load(JPanel p) { //Ajoute le jPanel passé en paramètre
         p.setBounds(194, 0, 900, 900);
 		contentPane.add(p);
         revalidate();
         repaint();	
 	}
 	
-	public static void Connexion(String id,String mtp) {
-		compteUser = listCompte.getCompte(id,mtp);
+	public static void Connexion(String id,String mtp) { //Selon le compte connecté, on fait apparaitre uniquement ce qu'il peut accéder.
+		compteUser = listCompte.getCompte(id,mtp); //On regarde l'existence du compte à l'aide du ClasseurCompte, car celui-ci suit le patern expert de l'information
 		if (compteUser != null) {
 			switch(compteUser.getDroit()) {
-				case 0:
-					
-					break;
-				case 1:
+				case 1: //Compe gestionnaire
 					btnModifierLtatDun.setVisible(true);
 					break;
-				case 2:
+				case 2: //Compte prepose
 					btnFaireUneRservation.setVisible(true);
 					break;
 			}
@@ -119,11 +116,11 @@ public class MenuPrincipal extends JFrame {
 		}
 	}
 	
-	public static void erreur(String message) {
+	public static void erreur(String message) { // Utiliser pour générer un message d'erreur
 		JOptionPane.showMessageDialog(contentPane,message,"Erreur",JOptionPane.WARNING_MESSAGE);
 	}
 	
-	public static void Confirmation(String message) {
+	public static void Confirmation(String message) { // Utiliser pour générer un message de confirmation
 		JOptionPane.showMessageDialog(contentPane,message,"Confirmation",JOptionPane.WARNING_MESSAGE);
 	}
 	

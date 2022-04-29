@@ -38,21 +38,21 @@ public class Connexion extends JPanel {
 		
 		JButton btnConnexion = new JButton("Connexion");
 		btnConnexion.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (!textField_1.getText().equals("")) {
-					if (!passwordField.getText().equals("")) {
-						MenuPrincipal.Connexion(textField_1.getText(),passwordField.getText());
+			public void actionPerformed(ActionEvent e) { 
+				if (!textField_1.getText().equals("")) { // Doit mettre un nom d'utilisateur
+					if (!passwordField.getText().equals("")) { // Doit mettre un mot de passe
+						MenuPrincipal.Connexion(textField_1.getText(),passwordField.getText()); //On tente de se connecter avec les infos données 
 						textField_1.setText("");
 						passwordField.setText("");
 						if(MenuPrincipal.compteUser == null)
-							MenuPrincipal.erreur("Compte inexsitant");
+							MenuPrincipal.erreur("Compte inexsistant");
 					} 
 					else {
 						MenuPrincipal.erreur("Veuillez rentrer un mot de passe");
 					}
 				} 
 				else {
-					MenuPrincipal.erreur("Veuillez rentrer un id");
+					MenuPrincipal.erreur("Veuillez rentrer un nom d'utilisateur");
 				}
 			}
 		});
