@@ -109,9 +109,9 @@ public class ModificationReservation extends JPanel {
 		{
 			for(ReservationFantome r : listResrvationFantome)
 			{
-				if(r.getVehicules().getNomVehicule().equals())
+				if(r.getVehicules().getNomVehicule().equals(txt))
 				{
-					
+					list.add(r.getNomReservation());
 				}
 			}
 			break;
