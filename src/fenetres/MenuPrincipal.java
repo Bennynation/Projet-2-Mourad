@@ -13,6 +13,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import classeur.ClasseurClient;
 import classeur.ClasseurCompte;
 import classeur.ClasseurLocation;
 import classeur.ClasseurReservation;
@@ -27,17 +28,26 @@ import entite.Simple;
 import entite.Utilitaire;
 import entite.Compte;
 import panel.Connexion;
+import panel.ModificationReservation;
 import panel.ModifierEtat;
 import panel.ReservationPanel;
 
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
 import java.awt.event.ActionEvent;
+import java.awt.Button;
+
+import java.util.Date;
 
 public class MenuPrincipal extends JFrame {
 	ReservationPanel reserv = new ReservationPanel();
 	ModifierEtat modifEt = new ModifierEtat();
+	ModificationReservation modifRes = new ModificationReservation();
 	static Connexion co = new Connexion();
+	
+	public static Date date = new Date() ;
 	public static Compte compteUser;
+	static public ClasseurClient listClient = new ClasseurClient();
 	static public ClasseurCompte listCompte = new ClasseurCompte();
 	static public ClasseurReservation listResrv = new ClasseurReservation();
 	static public ClasseurLocation listLocation = new ClasseurLocation();
@@ -45,6 +55,7 @@ public class MenuPrincipal extends JFrame {
 	static JButton btnNewButton = new JButton("Connexion");
 	static JButton btnModifierLtatDun = new JButton("Modifier l'\u00E9tat\r\r\n d'un v\u00E9hicule");
 	static JButton btnFaireUneRservation = new JButton("Faire une r\u00E9servation");
+	static JButton btnModificationReservation = new JButton("Modification R\u00E9servation");
 	private static JPanel contentPane;
 	
 	
@@ -65,7 +76,8 @@ public class MenuPrincipal extends JFrame {
 		listVehicule.addVehicule(new Simple(4, "xC60 momentum", "Banc chauffant", "4 cylindres", 5, "En service","", 500));
 		listVehicule.addVehicule(new Prestige(5, "1995 mr2", "Caméra de recule", "4 cylindres", 5, "En service","", 500));
 		listVehicule.addVehicule(new Prestige(6, "Pontiac", "Banc chauffant", "4 cylindres", 5, "Hors service","", 500));
-		
+		listResrv.ajouterRéservation(1, 1, date , date);
+		listClient.setListClient(listCompte.getClientList());
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -85,6 +97,7 @@ public class MenuPrincipal extends JFrame {
 		contentPane.remove(co);
 		contentPane.remove(reserv);
 		contentPane.remove(modifEt);
+		contentPane.remove(modifRes);
         revalidate();
         repaint();	
 	}
@@ -108,6 +121,7 @@ public class MenuPrincipal extends JFrame {
 					break;
 				case 2:
 					btnFaireUneRservation.setVisible(true);
+					btnModificationReservation.setVisible(true);
 					break;
 			}
 			btnNewButton.setText("Déconnexion");
@@ -153,6 +167,7 @@ public class MenuPrincipal extends JFrame {
 					compteUser = null;
 					btnFaireUneRservation.setVisible(false);
 					btnModifierLtatDun.setVisible(false);
+					btnModificationReservation.setVisible(false);
 					reset();
 				}
 			}
@@ -182,5 +197,15 @@ public class MenuPrincipal extends JFrame {
 		});
 		btnFaireUneRservation.setBounds(0, 152, 191, 45);
 		panelMenu.add(btnFaireUneRservation);
+		
+		btnModificationReservation.setVisible(false);
+		btnModificationReservation.setBounds(0, 203, 191, 45);
+		btnModificationReservation.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			reset();
+			load(modifRes);
+			}
+		});
+		panelMenu.add(btnModificationReservation);
 	}
 }

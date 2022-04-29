@@ -38,6 +38,18 @@ public class ClasseurCompte {
 		}
 		return co;
 	}
+	public List<Client> getClientList()
+	{
+		List<Client> tmp = new ArrayList();
+		for(Compte c: listCompte)
+		{
+			if(c.getClass().equals(Client.class))
+			{
+				tmp.add((Client) c);
+			}
+		}
+		return tmp;
+	}
 	
 
 }

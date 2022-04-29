@@ -120,5 +120,29 @@ public class InventaireVehicules {
 			}		
 		}	
 	}
+	public static Vehicules getVehicule(String NomVehicule)
+	{
+		Vehicules tmp = null;
+		for(Vehicules v: listeVehicule)
+		{
+			if(v.getNomVehicule().equals(NomVehicule))
+			{
+				tmp=v;
+			}
+		}
+		return tmp;
+	}
+	public static Vehicules getVehicule(int idVehicule)
+	{
+		Vehicules tmp = null;
+		for(Vehicules v: listeVehicule)
+		{
+			if(v.getId()==idVehicule)
+			{
+				tmp=v;
+			}
+		}
+		return tmp;
+	}
 }
 
