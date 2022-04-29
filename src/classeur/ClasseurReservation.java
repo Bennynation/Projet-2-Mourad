@@ -66,9 +66,4 @@ public class ClasseurReservation {
 	{
 		return listeReserv;
 	}
-
-	public List<Reservation> getListReservation()
-	{
-		return listeReserv;
-	}
 }

@@ -132,12 +132,12 @@ public class InventaireVehicules {
 		}
 		return tmp;
 	}
-	public static Vehicules getVehicule(int idVehicule)
-	{
+
+	public static Vehicules getVehicule(int idV) {
 		Vehicules tmp = null;
 		for(Vehicules v: listeVehicule)
 		{
-			if(v.getId()==idVehicule)
+			if(v.getId()==idV)
 			{
 				tmp=v;
 			}
