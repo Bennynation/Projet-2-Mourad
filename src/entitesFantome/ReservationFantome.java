@@ -9,14 +9,15 @@ public class ReservationFantome {
 	String nomRervation;
 	private Client client;
 	private Vehicules vehicule;
-	private Date dReservD;
+	private Date dReservD,dReservA;
 	
-	public ReservationFantome(String nomRervation,Client client,Vehicules vehicule,Date dReservD)
+	public ReservationFantome(String nomRervation,Client client,Vehicules vehicule,Date dReservD,Date dReservA)
 	{
 		this.nomRervation = nomRervation;
 		this.client=client;
 		this.vehicule=vehicule;
 		this.dReservD=dReservD;
+		this.dReservA=dReservA;
 	}
 	
 	public String getNomReservation()
@@ -50,5 +51,14 @@ public class ReservationFantome {
 
 	public void setdReservD(Date dReservD) {
 		this.dReservD = dReservD;
+	}
+
+	public Date getdReservA() {
+		return dReservA;
+	}
+
+
+	public void setdReservA(Date dReservA) {
+		this.dReservA = dReservA;
 	}
 }
