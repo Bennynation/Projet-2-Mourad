@@ -52,4 +52,9 @@ public class Reservation {
 	public void setdReservF(Date dReservF) {
 		this.dReservF = dReservF;
 	}
+
+
+	public void setIdV(int id) {
+		this.idV=id;
+	}
 }

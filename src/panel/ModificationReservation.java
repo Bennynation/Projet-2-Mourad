@@ -251,17 +251,17 @@ public class ModificationReservation extends JPanel {
 			break;
 		}
 		
-		}
+		
+	}
+	
 	}
 	}
-
 	public void GenerationListFantomeVehicule(String nomVehicule)
 	{
 		if(this.listResrvationFantome.size()>0)
 		{
 			this.listResrvationFantome.removeAll(listResrvationFantome);
 		}
-		int i =1;
 		for (Reservation r : listResrv.getListReservation())
 		{
 			if(InventaireVehicules.getVehicule(r.getIdV()).getNomVehicule().equals(nomVehicule))
@@ -278,7 +278,6 @@ public class ModificationReservation extends JPanel {
 		{
 			this.listResrvationFantome.removeAll(listResrvationFantome);
 		}
-		int i =1;
 		for (Reservation r : listResrv.getListReservation())
 		{	
 			if(r.getIdC()==client.getId())
@@ -291,6 +290,17 @@ public class ModificationReservation extends JPanel {
 	}
 	public void updateInfo()
 	{
-		
-	}
+		String[] txt= NomClient.getText().split(", ");
+
+			for (Reservation r : listResrv.getListReservation())
+			{
+				if(r.getIdC()==listClient.getCompteSpecefic(txt[1],txt[0]).getId())
+				{
+					r.setdReservD(dtDe.getDate());
+					r.setdReservF(dtA.getDate());
+					r.setIdV(listVehicule.getVehicule(choixVehicule.getSelectedItem()).getId());
+				}
+			}
+		}
+	
 }
