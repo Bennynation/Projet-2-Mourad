@@ -8,6 +8,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -150,18 +152,44 @@ public class ModificationReservation extends JPanel {
 		lblNewLabel_1.setBounds(306, 249, 46, 14);
 		add(lblNewLabel_1);
 		
-		
-		btnNewButton.setBounds(306, 307, 89, 23);
-		add(btnNewButton);
-		btnNewButton.setEnabled(false);
-		
-		
 		choixVehicule.setBounds(306, 152, 230, 20);
 		add(choixVehicule);
 		for(Vehicules v : listVehicule.getListVehicule())
 		{
 			choixVehicule.add(v.getNomVehicule());
 		}
+		choixVehicule.addItemListener(new ItemListener() {
+
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				
+				btnNewButton.setEnabled(true);
+				
+			}
+			});
+		
+		btnNewButton.setBounds(306, 307, 89, 23);
+		add(btnNewButton);
+		btnNewButton.setEnabled(false);
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				updateInfo();
+		}
+	});
+		dtDe.getDateEditor().addPropertyChangeListener(new PropertyChangeListener() {
+
+			@Override
+			public void propertyChange(PropertyChangeEvent evt) {
+				btnNewButton.setEnabled(true);	
+			}});
+		dtA.getDateEditor().addPropertyChangeListener(new PropertyChangeListener() {
+
+			@Override
+			public void propertyChange(PropertyChangeEvent evt) {
+				btnNewButton.setEnabled(true);	
+			}});
+		
+		
 		
 		
 		
@@ -171,7 +199,7 @@ public class ModificationReservation extends JPanel {
 	{
 		NomClient.setText("");
 		String txt= ValeurRecherche.getText();
-		if(txt!=null || txt.equals(""))
+		if(txt!=null || !txt.equals(""))
 		{
 			switch(champ)
 		{
@@ -213,7 +241,7 @@ public class ModificationReservation extends JPanel {
 					public void itemStateChanged(ItemEvent e) {
 						Calendar calender = Calendar.getInstance();
 						NomClient.setText(listResrvationFantome.get(list.getSelectedIndex()).getClient().getFname()+", "+listResrvationFantome.get(list.getSelectedIndex()).getClient().getLname());
-						//NomVehicule.setText(listResrvationFantome.get(list.getSelectedIndex()).getVehicules().getNomVehicule());
+						choixVehicule.select(listResrvationFantome.get(list.getSelectedIndex()).getVehicules().getId()-1);
 						calender.setTime(listResrvationFantome.get(list.getSelectedIndex()).getdReservD());
 						dtDe.setCalendar(calender);
 						calender.setTime(listResrvationFantome.get(list.getSelectedIndex()).getdReservA());
@@ -259,6 +287,10 @@ public class ModificationReservation extends JPanel {
 				listResrvationFantome.add(new ReservationFantome(name,listClient.getCompteSpecfic(r.getIdC()),InventaireVehicules.getVehicule(r.getIdV()),r.getdReservD(),r.getdReservF()));
 			}
 		}
+		
+	}
+	public void updateInfo()
+	{
 		
 	}
 }
