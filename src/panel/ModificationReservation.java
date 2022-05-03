@@ -21,6 +21,7 @@ import classeur.ClasseurReservation;
 import classeur.InventaireVehicules;
 import entite.Client;
 import entite.Reservation;
+import entite.Vehicules;
 import entitesFantome.ReservationFantome;
 import fenetres.MenuPrincipal;
 import javax.swing.JLabel;
@@ -42,7 +43,7 @@ public class ModificationReservation extends JPanel {
 	java.awt.List list = new java.awt.List();
 	Choice choice = new Choice();
 	Choice choice_1 = new Choice();
-	Choice choice_2 = new Choice();
+	Choice choixVehicule = new Choice();
 	/**
 	 * Create the panel.
 	 */
@@ -155,8 +156,12 @@ public class ModificationReservation extends JPanel {
 		btnNewButton.setEnabled(false);
 		
 		
-		choice_2.setBounds(306, 152, 230, 20);
-		add(choice_2);
+		choixVehicule.setBounds(306, 152, 230, 20);
+		add(choixVehicule);
+		for(Vehicules v : listVehicule.getListVehicule())
+		{
+			choixVehicule.add(v.getNomVehicule());
+		}
 		
 		
 		
@@ -164,7 +169,7 @@ public class ModificationReservation extends JPanel {
 	}
 	public void MoteurDerecherche(int champ)
 	{
-		
+		NomClient.setText("");
 		String txt= ValeurRecherche.getText();
 		if(txt!=null || txt.equals(""))
 		{
@@ -182,7 +187,7 @@ public class ModificationReservation extends JPanel {
 					public void itemStateChanged(ItemEvent e) {
 						Calendar calender = Calendar.getInstance();
 						NomClient.setText(listResrvationFantome.get(list.getSelectedIndex()).getClient().getFname()+", "+listResrvationFantome.get(list.getSelectedIndex()).getClient().getLname());
-						//NomVehicule.setText(listResrvationFantome.get(list.getSelectedIndex()).getVehicules().getNomVehicule());
+						choixVehicule.select(listResrvationFantome.get(list.getSelectedIndex()).getVehicules().getId()-1);
 						calender.setTime(listResrvationFantome.get(list.getSelectedIndex()).getdReservD());
 						dtDe.setCalendar(calender);
 						calender.setTime(listResrvationFantome.get(list.getSelectedIndex()).getdReservA());

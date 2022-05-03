@@ -144,5 +144,9 @@ public class InventaireVehicules {
 		}
 		return tmp;
 	}
+	public static List<Vehicules> getListVehicule()
+	{
+		return listeVehicule;
+	}
 }
 
