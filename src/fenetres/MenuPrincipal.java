@@ -13,6 +13,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import classeur.ClasseurClient;
 import classeur.ClasseurCompte;
 import classeur.ClasseurContrat;
 import classeur.ClasseurLocation;
@@ -28,17 +29,23 @@ import entite.Simple;
 import entite.Utilitaire;
 import entite.Compte;
 import panel.Connexion;
+import panel.ModificationClient;
+import panel.ModificationReservation;
 import panel.ModifierEtat;
 import panel.ReservationPanel;
 
 import java.awt.event.ActionListener;
+import java.sql.Date;
 import java.awt.event.ActionEvent;
 
 public class MenuPrincipal extends JFrame {
 	private ReservationPanel reserv = new ReservationPanel();
 	private ModifierEtat modifEt = new ModifierEtat();
+	private ModificationReservation modifRes = new ModificationReservation();
+	private ModificationClient modifClient = new ModificationClient();
 	private static Connexion co = new Connexion();
 	public static Compte compteUser;
+	static public ClasseurClient listClient = new ClasseurClient();
 	static public ClasseurCompte listCompte = new ClasseurCompte();
 	static public ClasseurReservation listResrv = new ClasseurReservation();
 	static public ClasseurLocation listLocation = new ClasseurLocation();
@@ -47,6 +54,8 @@ public class MenuPrincipal extends JFrame {
 	private static JButton btnNewButton = new JButton("Connexion");
 	private static JButton btnModifierLtatDun = new JButton("Modifier l'\u00E9tat\r\r\n d'un v\u00E9hicule");
 	private static JButton btnFaireUneRservation = new JButton("Faire une r\u00E9servation");
+	private static JButton btnModificationReservation = new JButton("Modification R\u00E9servation");
+	private static JButton btnModifiierClient = new JButton("Modification Compte");
 	private static JPanel contentPane;
 	
 	
@@ -56,7 +65,7 @@ public class MenuPrincipal extends JFrame {
 	 */
 	public static void main(String[] args) {
 
-		listCompte.addClient(new Client("Client","AFD510", "34543534543", 0,1, "Legare", "Benoit", "Jean", 395, "Trois-Rivières", "G8W5Y6", "123", 0));
+		listCompte.addCompte(new Client("Client","AFD510", "34543534543", 0,1, "Legare", "Benoit", "Jean", 395, "Trois-Rivières", "G8W5Y6", "123", 0));
 		listCompte.addCompte(new Client("FDA","AFD610", "34543534543", 1,2, "Bouche", "Jeremy", "Jean", 400, "Trois-Rivières", "G8W5Y4", "123", 0));
 		listCompte.addCompte(new Manager("Manager",3, "Bouche", "Frank", "Jean", 400, "Trois-Rivières", "G8W5Y4", "123", 0));
 		listCompte.addCompte(new Prepose("Prepose",4, "Roche", "Moe", "Jean", 400, "Trois-Rivières", "G8W5Y4", "123", 0));
@@ -67,6 +76,7 @@ public class MenuPrincipal extends JFrame {
 		listVehicule.addVehicule(new Simple(4, "xC60 momentum", "Banc chauffant", "4 cylindres", 5, "En service","", 500));
 		listVehicule.addVehicule(new Prestige(5, "1995 mr2", "Caméra de recule", "4 cylindres", 5, "En service","", 500));
 		listVehicule.addVehicule(new Prestige(6, "Pontiac", "Banc chauffant", "4 cylindres", 5, "Hors service","", 500));
+		listClient.setListClient(listCompte.getClientList());
 		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -87,6 +97,8 @@ public class MenuPrincipal extends JFrame {
 		contentPane.remove(co);
 		contentPane.remove(reserv);
 		contentPane.remove(modifEt);
+		contentPane.remove(modifRes);
+		contentPane.remove(modifClient);
         revalidate();
         repaint();	
 	}
@@ -102,11 +114,18 @@ public class MenuPrincipal extends JFrame {
 		compteUser = listCompte.getCompte(id,mtp); //On regarde l'existence du compte à l'aide du ClasseurCompte, car celui-ci suit le patern expert de l'information
 		if (compteUser != null) {
 			switch(compteUser.getDroit()) {
-				case 1: //Compe gestionnaire
+				case 0:  //Compe client
+				{
+					btnModifiierClient.setVisible(true);
+					break;
+				}
+					
+				case 1:  //Compe gestionnaire
 					btnModifierLtatDun.setVisible(true);
 					break;
-				case 2: //Compte prepose
+				case 2:  //Compe prepose
 					btnFaireUneRservation.setVisible(true);
+					btnModificationReservation.setVisible(true);
 					break;
 			}
 			btnNewButton.setText("Déconnexion");
@@ -152,7 +171,10 @@ public class MenuPrincipal extends JFrame {
 					compteUser = null;
 					btnFaireUneRservation.setVisible(false);
 					btnModifierLtatDun.setVisible(false);
+					btnModificationReservation.setVisible(false);
+					btnModifiierClient.setVisible(false);
 					reset();
+					load(co);
 				}
 			}
 		});
@@ -181,5 +203,27 @@ public class MenuPrincipal extends JFrame {
 		});
 		btnFaireUneRservation.setBounds(0, 152, 191, 45);
 		panelMenu.add(btnFaireUneRservation);
+		
+		btnModificationReservation.setVisible(false);
+		btnModificationReservation.setBounds(0, 203, 191, 45);
+		btnModificationReservation.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			reset();
+			load(modifRes);
+			}
+		});
+		btnModifiierClient.setVisible(false);
+		panelMenu.add(btnModificationReservation);
+		btnModifiierClient.setBounds(0, 97, 191, 44);
+		btnModifiierClient.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			modifClient.setClient();
+			modifClient.setVisible(true);
+			reset();
+			load(modifClient);
+			}
+		});
+		panelMenu.add(btnModifiierClient);
+		
 	}
 }

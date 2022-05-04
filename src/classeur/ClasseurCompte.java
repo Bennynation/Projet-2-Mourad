@@ -23,11 +23,7 @@ public class ClasseurCompte {
 		listCompte.add(compte);
 	}
 	
-	public void addClient(Client c)
-	{
-		listCompte.add(c);
-	}
-	
+
 	public Compte getCompte(String id,String mtp) {
 		Compte co = null;
 		for (Compte c : listCompte) 
@@ -39,5 +35,27 @@ public class ClasseurCompte {
 		return co;
 	}
 	
+	public List<Client> getClientList()
+	{
+		List<Client> tmp = new ArrayList();
+		for(Compte c: listCompte)
+		{
+			if(c.getClass().equals(Client.class))
+			{
+				tmp.add((Client) c);
+			}
+		}
+		return tmp;
+	}
+	public void setCompte(Compte co)
+	{
+		for (Compte c : listCompte) 
+		{ 
+		    if (c.getNomUtilisateur().equals(co.getNomUtilisateur()) && c.getPass().equals(co.getPass())) {
+		    	co = c;
+		    	break;
+		    }
+		}
+	}
 
 }

@@ -22,6 +22,9 @@ public class Reservation {
 		return idR;
 	}
 
+	public void setIdV(int id) {
+		this.idV=id;
+	}
 
 	public int getIdV() {
 		return idV;

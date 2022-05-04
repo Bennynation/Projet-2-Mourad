@@ -131,7 +131,7 @@ public class ModifierEtat extends JPanel {
 				switch(cbType.getSelectedIndex()) {
 					case 0:
 				        DefaultListModel listModel = new DefaultListModel () { //Affiche tous les véhicules
-				        	private List<Vehicules> values = MenuPrincipal.listVehicule.afficherTousVehicules();
+				        	private List<Vehicules> values = MenuPrincipal.listVehicule.getListVehicule();
 							public int getSize() {
 								return values.size();
 							}
@@ -221,7 +221,7 @@ public class ModifierEtat extends JPanel {
 		
 	
 		lVehicules.setModel(new DefaultListModel() {
-			private List<Vehicules> values = MenuPrincipal.listVehicule.afficherTousVehicules();
+			private List<Vehicules> values = MenuPrincipal.listVehicule.getListVehicule();
 			public int getSize() {
 				return values.size();
 			}

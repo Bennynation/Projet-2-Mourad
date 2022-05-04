@@ -14,7 +14,7 @@ public class InventaireVehicules {
 		listeVehicule.add(vehi);
 	}	
 	
-	public  List<Vehicules> afficherTousVehicules() {		
+	public  List<Vehicules> getListVehicule() {		
 		return listeVehicule;	
 	}
 	
@@ -119,6 +119,31 @@ public class InventaireVehicules {
 				v.setDispoSelonEtat();
 			}		
 		}	
+	}
+	
+	public Vehicules getVehicule(String NomVehicule)
+	{
+		Vehicules tmp = null;
+		for(Vehicules v: listeVehicule)
+		{
+			if(v.getNomVehicule().equals(NomVehicule))
+			{
+				tmp=v;
+			}
+		}
+		return tmp;
+	}
+
+	public Vehicules getVehicule(int idV) {
+		Vehicules tmp = null;
+		for(Vehicules v: listeVehicule)
+		{
+			if(v.getId()==idV)
+			{
+				tmp=v;
+			}
+		}
+		return tmp;
 	}
 }
 
