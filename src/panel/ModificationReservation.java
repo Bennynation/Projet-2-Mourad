@@ -301,6 +301,7 @@ public class ModificationReservation extends JPanel {
 					r.setIdV(listVehicule.getVehicule(choixVehicule.getSelectedItem()).getId());
 				}
 			}
+			MenuPrincipal.listResrv=ModificationReservation.listResrv;
 		}
 	
 }

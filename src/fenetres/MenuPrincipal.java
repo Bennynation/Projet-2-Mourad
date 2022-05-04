@@ -28,6 +28,7 @@ import entite.Simple;
 import entite.Utilitaire;
 import entite.Compte;
 import panel.Connexion;
+import panel.ModificationClient;
 import panel.ModificationReservation;
 import panel.ModifierEtat;
 import panel.ReservationPanel;
@@ -43,8 +44,9 @@ public class MenuPrincipal extends JFrame {
 	ReservationPanel reserv = new ReservationPanel();
 	ModifierEtat modifEt = new ModifierEtat();
 	ModificationReservation modifRes = new ModificationReservation();
+	 ModificationClient modifClient = new ModificationClient();
 	static Connexion co = new Connexion();
-	
+	public static Client client;
 	public static Date date = new Date() ;
 	public static Compte compteUser;
 	static public ClasseurClient listClient = new ClasseurClient();
@@ -56,7 +58,9 @@ public class MenuPrincipal extends JFrame {
 	static JButton btnModifierLtatDun = new JButton("Modifier l'\u00E9tat\r\r\n d'un v\u00E9hicule");
 	static JButton btnFaireUneRservation = new JButton("Faire une r\u00E9servation");
 	static JButton btnModificationReservation = new JButton("Modification R\u00E9servation");
+	static JButton btnModifiierClient = new JButton("Modification Compte");
 	private static JPanel contentPane;
+	
 	
 	
 
@@ -94,10 +98,12 @@ public class MenuPrincipal extends JFrame {
 
 
 	public void reset() {
+		
 		contentPane.remove(co);
 		contentPane.remove(reserv);
 		contentPane.remove(modifEt);
 		contentPane.remove(modifRes);
+		contentPane.remove(modifClient);
         revalidate();
         repaint();	
 	}
@@ -114,8 +120,11 @@ public class MenuPrincipal extends JFrame {
 		if (compteUser != null) {
 			switch(compteUser.getDroit()) {
 				case 0:
-					
+				{
+					btnModifiierClient.setVisible(true);
 					break;
+				}
+					
 				case 1:
 					btnModifierLtatDun.setVisible(true);
 					break;
@@ -168,7 +177,9 @@ public class MenuPrincipal extends JFrame {
 					btnFaireUneRservation.setVisible(false);
 					btnModifierLtatDun.setVisible(false);
 					btnModificationReservation.setVisible(false);
+					btnModifiierClient.setVisible(false);
 					reset();
+					load(co);
 				}
 			}
 		});
@@ -206,6 +217,16 @@ public class MenuPrincipal extends JFrame {
 			load(modifRes);
 			}
 		});
+		btnModifiierClient.setVisible(false);
 		panelMenu.add(btnModificationReservation);
+		btnModifiierClient.setBounds(0, 97, 191, 44);
+		btnModifiierClient.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			modifClient.setClient();
+			reset();
+			load(modifClient);
+			}
+		});
+		panelMenu.add(btnModifiierClient);
 	}
 }

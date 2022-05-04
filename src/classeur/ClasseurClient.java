@@ -13,12 +13,12 @@ public class ClasseurClient {
 	{
 		listClient.add(compte);
 	}
-	public Client getCompteSpecfic(int id, String pass)
+	public Client getCompteSpecfic(String id, String pass)
 	{
 		Client tmp = null;
 		for(Client q : listClient)
 		{
-			if(q.getId()==id && q.getPass().equals(pass))
+			if(q.getNomUtilisateur().equals(id) && q.getPass().equals(pass))
 			{
 				tmp=q;
 				break;
