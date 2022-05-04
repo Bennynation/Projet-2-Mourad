@@ -223,6 +223,7 @@ public class MenuPrincipal extends JFrame {
 		btnModifiierClient.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			modifClient.setClient();
+			modifClient.setVisible(true);
 			reset();
 			load(modifClient);
 			}

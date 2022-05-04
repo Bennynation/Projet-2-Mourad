@@ -18,6 +18,7 @@ import java.awt.Button;
 import javax.swing.JButton;
 
 public class ModificationClient extends JPanel {
+	
 	TextField lnameTxt = new TextField();
 	TextField fnameTxt = new TextField();
 	TextField villetxt = new TextField();
@@ -34,6 +35,7 @@ public class ModificationClient extends JPanel {
 	private final Label label_6 = new Label("# Permis :");
 	JButton button = new JButton("Modification");
 	Client client = null;
+	
 	public ModificationClient() {
 		setLayout(null);
 		lnameTxt.setBounds(242, 76, 173, 22);
@@ -102,6 +104,7 @@ public class ModificationClient extends JPanel {
 		button.setEnabled(false);
 		this.setText();
 	}
+	//fait la modification du compte sélectionné du client;
 	private void ModificationCompte() {
 				this.client.setFname(fnameTxt.getText());
 				this.client.setLname(lnameTxt.getText());
@@ -116,7 +119,8 @@ public class ModificationClient extends JPanel {
 					this.client.setNoCivique(Integer.parseInt(noCiviquetxt.getText()));
 					this.client.setFullAddresse(this.client.getNoCivique()+""+this.client.getRue());
 				}
-				
+				MenuPrincipal.listCompte.setCompte(this.client);
+				this.setVisible(false);
 				
 		}
 	private Integer tryParse(Object obj) {
@@ -128,6 +132,7 @@ public class ModificationClient extends JPanel {
 		  }
 		  return value;
 		}
+	//Charge les valeurs lié au client dans les textBoxs du panel
 	private void setText()
 	{
 		if(client!=null)
@@ -231,6 +236,7 @@ public class ModificationClient extends JPanel {
 			button.setEnabled(false);
 		}
 	}
+	//Chercher le client qui est dans la fenêtre MenuPrincipal
 	public void setClient()
 	{
 		if(MenuPrincipal.compteUser.getClass().equals(Client.class))

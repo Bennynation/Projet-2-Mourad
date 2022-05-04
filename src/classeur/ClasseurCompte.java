@@ -34,6 +34,7 @@ public class ClasseurCompte {
 		{ 
 		    if (c.getNomUtilisateur().equals(id) && c.getPass().equals(mtp)) {
 		    	co = c;
+		    	break;
 		    }
 		}
 		return co;
@@ -49,6 +50,16 @@ public class ClasseurCompte {
 			}
 		}
 		return tmp;
+	}
+	public void setCompte(Compte co)
+	{
+		for (Compte c : listCompte) 
+		{ 
+		    if (c.getNomUtilisateur().equals(co.getNomUtilisateur()) && c.getPass().equals(co.getPass())) {
+		    	co = c;
+		    	break;
+		    }
+		}
 	}
 	
 

@@ -65,7 +65,9 @@ public class ModificationReservation extends JPanel {
 		add(choice_1);
 		choice_1.setEnabled(false);
 		choice_1.setVisible(false);
-		
+		/**
+		 * Met la liste des client dans un choice box afin de sélectionné un client afin de faire la recherche
+		 */
 		for(Client c : listClient.getListCompte())
 		{
 			choice_1.add(c.getLname()+","+c.getFname());
@@ -74,6 +76,9 @@ public class ModificationReservation extends JPanel {
 		add(choice);
 		choice.add("Nom du Véhicule");
 		choice.add("Nom du client");
+		/**
+		 * Effectue le changement de visibilté en fonction du type de réservation
+		 */
 		choice.addItemListener(new ItemListener() {
 
 			@Override
@@ -154,9 +159,12 @@ public class ModificationReservation extends JPanel {
 		
 		choixVehicule.setBounds(306, 152, 230, 20);
 		add(choixVehicule);
+		/**
+		 * Met la liste des Vehicules dans un choice box afin de sélectionné un Véhicule afin de modifié la réservation
+		 */
 		for(Vehicules v : listVehicule.getListVehicule())
 		{
-			choixVehicule.add(v.getNomVehicule());
+			choixVehicule.add(v.getNomVehicule()+" "+v.getType());
 		}
 		choixVehicule.addItemListener(new ItemListener() {
 
@@ -195,6 +203,9 @@ public class ModificationReservation extends JPanel {
 		
 		
 	}
+	/*
+	 * Génére une liste de réservation selon le mode recherche effectuer
+	 * */
 	public void MoteurDerecherche(int champ)
 	{
 		NomClient.setText("");
@@ -256,6 +267,9 @@ public class ModificationReservation extends JPanel {
 	
 	}
 	}
+	/*
+	 * Génére une liste de réservation basée sur l'association de d'autre classe afin de mieux manipulé et recevoir les informations selon les nom du Vehicule
+	 * */
 	public void GenerationListFantomeVehicule(String nomVehicule)
 	{
 		if(this.listResrvationFantome.size()>0)
@@ -272,6 +286,9 @@ public class ModificationReservation extends JPanel {
 		}
 		
 	}
+	/*
+	 * Génére une liste de réservation basée sur l'association de d'autre classe afin de mieux manipulé et recevoir les informations selon la classe Client
+	 * */
 	public void GenerationListFantomeClient(Client client)
 	{
 		if(this.listResrvationFantome.size()>0)
@@ -288,6 +305,9 @@ public class ModificationReservation extends JPanel {
 		}
 		
 	}
+	/*
+	 * Met a jours les information de la réservation dans Classeurs de réservation dans le menu principale. 
+	 * */
 	public void updateInfo()
 	{
 		String[] txt= NomClient.getText().split(", ");
