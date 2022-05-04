@@ -33,7 +33,7 @@ import javax.swing.JButton;
 public class ModificationReservation extends JPanel {
 	static public ClasseurReservation listResrv = MenuPrincipal.listResrv;
 	public static ClasseurClient listClient= MenuPrincipal.listClient;
-	public static InventaireVehicules listVehicule = MenuPrincipal.listVehicule;
+	public  InventaireVehicules listVehicule = MenuPrincipal.listVehicule;
 	public static List<ReservationFantome> listResrvationFantome = new ArrayList<>();
 	TextField ValeurRecherche = new TextField();
 	Label label = new Label("Mots cl\u00E9s de recherche");
@@ -311,17 +311,17 @@ public class ModificationReservation extends JPanel {
 	public void updateInfo()
 	{
 		String[] txt= NomClient.getText().split(", ");
-
+		
 			for (Reservation r : listResrv.getListReservation())
 			{
 				if(r.getIdC()==listClient.getCompteSpecefic(txt[1],txt[0]).getId())
 				{
+					int idv = listVehicule.getListVehicule().get(choixVehicule.getSelectedIndex()-1).getId();
 					r.setdReservD(dtDe.getDate());
 					r.setdReservF(dtA.getDate());
-					r.setIdV(listVehicule.getVehicule(choixVehicule.getSelectedItem()).getId());
+					r.setIdV(idv);
 				}
 			}
 			MenuPrincipal.listResrv=ModificationReservation.listResrv;
 		}
-	
 }
