@@ -31,7 +31,7 @@ public class ClasseurReservation {
 	public boolean verifId(int i) {
 		for (Reservation r : listeReserv) 
 			{ 
-			    if (r.getIdL()==i) {
+			    if (r.getIdR()==i) {
 			    	return false;
 			    }
 			}

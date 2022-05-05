@@ -45,7 +45,7 @@ public class Connexion extends JPanel {
 						txtNom.setText("");
 						passwordField.setText("");
 						if(MenuPrincipal.compteUser == null)
-							MenuPrincipal.erreur("Compte inexsistant");
+							MenuPrincipal.erreur("Compte inexistant");
 					} 
 					else {
 						MenuPrincipal.erreur("Veuillez rentrer un mot de passe");

@@ -18,7 +18,7 @@ public class Reservation {
 	}
 
 
-	public int getIdL() {
+	public int getIdR() {
 		return idR;
 	}
 
