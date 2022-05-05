@@ -25,6 +25,8 @@ public class ClasseurLocation {
 			    if ((dateD.after(l.getDateDebut()) && dateD.before(l.getDateRetour())) || dateD.equals(l.getDateDebut())  || dateD.equals(l.getDateRetour()) ){	
 			    	return false;
 		    		}
+			    if ((dateD.after(l.getDateDebut()) && dateF.before(l.getDateRetour()))){
+			    	return false;}
 			    else if ((dateF.after(l.getDateDebut()) &&  dateF.before(l.getDateRetour())) || dateF.equals(l.getDateDebut())  || dateF.equals(l.getDateRetour()) ) {
     			    return false;	
 			    }

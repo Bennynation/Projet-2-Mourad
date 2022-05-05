@@ -3,6 +3,7 @@ package panel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Date;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
@@ -49,9 +50,11 @@ public class ReservationPanel extends JPanel {
 	private JDateChooser dtDe = new JDateChooser();
 	JList lVehicules = new JList();
 	private int id;
-	private Date dtRA, dtRDe;
 	private JLabel lbAcc;
+	private JTextField txtDateD = new JTextField();
+	private JTextField txtDateF = new JTextField();
 
+	
 	/**
 	 * Create the panel.
 	 */
@@ -61,67 +64,67 @@ public class ReservationPanel extends JPanel {
 		setLayout(null);
 		
 		JLabel lbNom = new JLabel("Nom de v\u00E9hicule");
-		lbNom.setBounds(258, 240, 148, 14);
+		lbNom.setBounds(252, 262, 148, 14);
 		add(lbNom);
 		
 		txtNom = new JTextField();
 		txtNom.setEditable(false);
-		txtNom.setBounds(258, 265, 295, 20);
+		txtNom.setBounds(252, 287, 295, 20);
 		add(txtNom);
 		txtNom.setColumns(10);
 		
 		lbAcc = new JLabel("Accessoires");
-		lbAcc.setBounds(258, 296, 148, 14);
+		lbAcc.setBounds(252, 318, 148, 14);
 		add(lbAcc);
 		
 		txtAcc = new JTextField();
 		txtAcc.setEditable(false);
 		txtAcc.setColumns(10);
-		txtAcc.setBounds(258, 321, 295, 20);
+		txtAcc.setBounds(252, 343, 295, 20);
 		add(txtAcc);
 		
 		JLabel lbMoteur = new JLabel("Moteur");
-		lbMoteur.setBounds(258, 352, 148, 14);
+		lbMoteur.setBounds(252, 374, 148, 14);
 		add(lbMoteur);
 		
 		txtMot = new JTextField();
 		txtMot.setEditable(false);
 		txtMot.setColumns(10);
-		txtMot.setBounds(258, 377, 295, 20);
+		txtMot.setBounds(252, 399, 295, 20);
 		add(txtMot);
 		
 		JLabel lbNb = new JLabel("Nombre de place");
-		lbNb.setBounds(258, 408, 148, 14);
+		lbNb.setBounds(252, 430, 148, 14);
 		add(lbNb);
 		
 		txtNb = new JTextField();
 		txtNb.setEditable(false);
 		txtNb.setColumns(10);
-		txtNb.setBounds(258, 433, 295, 20);
+		txtNb.setBounds(252, 455, 295, 20);
 		add(txtNb);
 		
 		JLabel lbTarif = new JLabel("Tarif");
-		lbTarif.setBounds(258, 464, 148, 14);
+		lbTarif.setBounds(252, 486, 148, 14);
 		add(lbTarif);
 		
 		txtTarif = new JTextField();
 		txtTarif.setEditable(false);
 		txtTarif.setColumns(10);
-		txtTarif.setBounds(258, 489, 295, 20);
+		txtTarif.setBounds(252, 511, 295, 20);
 		add(txtTarif);
 		
 		JLabel lbEtat = new JLabel("\u00C9tat");
-		lbEtat.setBounds(258, 520, 148, 14);
+		lbEtat.setBounds(252, 542, 148, 14);
 		add(lbEtat);
 		
 		JComboBox cbClient = new JComboBox();
-		cbClient.setBounds(258, 207, 295, 22);
+		cbClient.setBounds(252, 229, 295, 22);
 		add(cbClient);
 		
 		txtEtat = new JTextField();
 		txtEtat.setEditable(false);
 		txtEtat.setColumns(10);
-		txtEtat.setBounds(258, 545, 295, 20);
+		txtEtat.setBounds(252, 567, 295, 20);
 		add(txtEtat);
 		
 		JLabel lbA = new JLabel("\u00C0 partir de");
@@ -135,11 +138,14 @@ public class ReservationPanel extends JPanel {
 					if (dateCompare()) {  //Vérification que la date de début est avant ou égal à celle de fin
 						Compte c = (Compte) cbClient.getSelectedItem();
 						if (c.getRetard() == 0) { //On vérifie si le client a des retards
-							if (MenuPrincipal.listVehicule.dispo(id) && MenuPrincipal.listResrv.verifDateIdVehicule(id, dtRDe, dtRA) && MenuPrincipal.listLocation.verifDateIdVehicule(id, dtRDe, dtRA)) { //On vérifie si le véhicule est toujours disponible pour les dates sélectionnées
-								MenuPrincipal.listContrat.addContrat(c.getId(),MenuPrincipal.listResrv.ajouterRéservation(c.getId(), id, dtRA, dtRDe)); //On ajoute la réservation au classeur de réservation, puis on ajoute le contrat de la réservation au classeur de contrat
+							if (MenuPrincipal.listVehicule.dispo(id) && MenuPrincipal.listResrv.verifDateIdVehicule(id, dtDe.getDate(), dtA.getDate()) && MenuPrincipal.listLocation.verifDateIdVehicule(id, dtDe.getDate(), dtA.getDate())) { //On vérifie si le véhicule est toujours disponible pour les dates sélectionnées
+								MenuPrincipal.listContrat.addContrat(c.getId(),MenuPrincipal.listResrv.ajouterRéservation(c.getId(), id, dtA.getDate(), dtDe.getDate())); //On ajoute la réservation au classeur de réservation, puis on ajoute le contrat de la réservation au classeur de contrat
 								MenuPrincipal.Confirmation("Vous avez faite une réservation");
 								resetDate();
 								btnRechercher.doClick();
+							}
+							else {
+								MenuPrincipal.erreur("Véhicule non disponible");	
 							}
 						}
 						else {
@@ -155,7 +161,7 @@ public class ReservationPanel extends JPanel {
 				}
 			}
 		});
-		btReservation.setBounds(361, 700, 89, 23);
+		btReservation.setBounds(355, 722, 89, 23);
 		add(btReservation);
 		
 		
@@ -226,7 +232,9 @@ public class ReservationPanel extends JPanel {
 						lVehicules.setModel(listModel3);
 						break;
 				}
-				clearChamps();	
+				clearChamps();
+				txtDateD.setText(new SimpleDateFormat("dd/MM/yyyy").format(dtA.getDate()));
+				txtDateF.setText(new SimpleDateFormat("dd/MM/yyyy").format(dtDe.getDate()));
 				}
 				else {
 					MenuPrincipal.erreur("Veuillez mettre la date de début avant celle de la fin");	
@@ -248,11 +256,11 @@ public class ReservationPanel extends JPanel {
 		txtType = new JTextField();
 		txtType.setEditable(false);
 		txtType.setColumns(10);
-		txtType.setBounds(258, 650, 295, 20);
+		txtType.setBounds(252, 672, 295, 20);
 		add(txtType);
 		
 		JLabel lbType = new JLabel("Type");
-		lbType.setBounds(258, 625, 148, 14);
+		lbType.setBounds(252, 647, 148, 14);
 		add(lbType);
 		
 		JLabel lblRservation = new JLabel("Faire une r\u00E9servation");
@@ -262,7 +270,7 @@ public class ReservationPanel extends JPanel {
 		
 		
 		lVehicules.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		lVehicules.setBounds(20, 265, 222, 405);
+		lVehicules.setBounds(10, 265, 232, 427);
 		lVehicules.setModel(new DefaultListModel() {
 			private List<Vehicules> values = MenuPrincipal.listResrv.verifReserv(MenuPrincipal.listLocation.verifLocation(MenuPrincipal.listVehicule.afficherTousVehiculesDispo(),dtDe.getDate(),dtA.getDate()),dtDe.getDate(),dtA.getDate());
 			public int getSize() {
@@ -298,17 +306,37 @@ public class ReservationPanel extends JPanel {
 		txtDesc = new JTextField();
 		txtDesc.setEditable(false);
 		txtDesc.setColumns(10);
-		txtDesc.setBounds(258, 599, 295, 20);
+		txtDesc.setBounds(252, 621, 295, 20);
 		add(txtDesc);
 		
 		JLabel lbDesc = new JLabel("Description d'\u00E9tat");
-		lbDesc.setBounds(258, 574, 148, 14);
+		lbDesc.setBounds(252, 596, 148, 14);
 		add(lbDesc);
 	
 		
 		JLabel lblClient = new JLabel("Client ");
-		lblClient.setBounds(258, 185, 222, 14);
+		lblClient.setBounds(252, 207, 222, 14);
 		add(lblClient);
+		
+
+		txtDateD.setEditable(false);
+		txtDateD.setColumns(10);
+		txtDateD.setBounds(252, 120, 295, 20);
+		add(txtDateD);
+		
+		JLabel lbDateDebut = new JLabel("Date d\u00E9but");
+		lbDateDebut.setBounds(252, 95, 148, 14);
+		add(lbDateDebut);
+		
+		JLabel lbDateF = new JLabel("Date fin");
+		lbDateF.setBounds(252, 151, 148, 14);
+		add(lbDateF);
+		
+
+		txtDateF.setEditable(false);
+		txtDateF.setColumns(10);
+		txtDateF.setBounds(252, 176, 295, 20);
+		add(txtDateF);
 		
 		for(Compte c : MenuPrincipal.listCompte.getListe()) {
 			if (c.getDroit() == 0)
@@ -328,12 +356,13 @@ try {
 	dtA.setMinSelectableDate(sql_StartDate);
 	dtDe.setDate(sql_StartDate);
 	dtA.setDate(sql_StartDate);
-	dtRA = sql_StartDate;
-	dtRDe = sql_StartDate;
+	txtDateD.setText(new SimpleDateFormat("dd/MM/yyyy").format(sql_StartDate));
+	txtDateF.setText(new SimpleDateFormat("dd/MM/yyyy").format(sql_StartDate));
 } catch (ParseException e1) {
 	// TODO Auto-generated catch block
 	e1.printStackTrace();
-}}   
+}
+}   
 
 public boolean dateCompare() //Regarde si la date de début est avant celle de la fin
 	{
@@ -352,6 +381,8 @@ public void clearChamps() { //Mets tous les champs vides
 	txtType.setText("");
 	txtDesc.setText("");
 	txtEtat.setText("");
+	txtDateD.setText("");
+	txtDateF.setText("");
 	id = 0;
 }
 }

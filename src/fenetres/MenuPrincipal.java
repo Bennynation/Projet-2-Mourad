@@ -70,12 +70,12 @@ public class MenuPrincipal extends JFrame {
 		listCompte.addCompte(new Manager("Manager",3, "Bouche", "Frank", "Jean", 400, "Trois-Rivières", "G8W5Y4", "123", 0));
 		listCompte.addCompte(new Prepose("Prepose",4, "Roche", "Moe", "Jean", 400, "Trois-Rivières", "G8W5Y4", "123", 0));
 		listCompte.addCompte(new Gestionnaire("Gestion",5, "Bouche", "Francis", "Jean", 400, "Trois-Rivières", "G8W5Y4", "123", 0));
-		listVehicule.addVehicule(new Utilitaire(1, "xC40 momentum", "4x4", "4 cylindres", 5, "Hors service","", 500));
-		listVehicule.addVehicule(new Utilitaire(2, "xC60 momentum", "4x4", "4 cylindres", 5, "Hors service","", 500));
+		listVehicule.addVehicule(new Utilitaire(1, "xC40 momentum", "4x4", "4 cylindres", 5, "En service","", 500));
+		listVehicule.addVehicule(new Utilitaire(2, "xC60 momentum", "4x4", "4 cylindres", 5, "En service","", 500));
 		listVehicule.addVehicule(new Simple(3, "xC40 momentum", "Caméra de recule", "4 cylindres", 5, "En service","", 500));
 		listVehicule.addVehicule(new Simple(4, "xC60 momentum", "Banc chauffant", "4 cylindres", 5, "En service","", 500));
 		listVehicule.addVehicule(new Prestige(5, "1995 mr2", "Caméra de recule", "4 cylindres", 5, "En service","", 500));
-		listVehicule.addVehicule(new Prestige(6, "Pontiac", "Banc chauffant", "4 cylindres", 5, "Hors service","", 500));
+		listVehicule.addVehicule(new Prestige(6, "Pontiac", "Banc chauffant", "4 cylindres", 5, "En service","", 500));
 		listClient.setListClient(listCompte.getClientList());
 		
 		EventQueue.invokeLater(new Runnable() {

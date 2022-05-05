@@ -45,6 +45,8 @@ public class ClasseurReservation {
 				if (r.getIdV() == idV) {
 				    if ((dateD.after(r.getdReservD()) && dateD.before(r.getdReservF())) || dateD.equals(r.getdReservD())  || dateD.equals(r.getdReservF()) ){
 				    	return false;}
+				    if ((dateD.before(r.getdReservD()) && dateF.after(r.getdReservF()))){
+				    	return false;}
 			    	else if((dateF.after(r.getdReservD()) &&  dateF.before(r.getdReservF())) || dateF.equals(r.getdReservD())  || dateF.equals(r.getdReservF())){
 			    		return false;
 			    		}
