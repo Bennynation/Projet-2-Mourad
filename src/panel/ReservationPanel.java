@@ -189,7 +189,7 @@ public class ReservationPanel extends JPanel {
 								return values.get(index);
 							}};
 
-				        //listModel.removeAllElements();
+
 				        lVehicules.setModel(listModel);
 						break;
 					case 1:

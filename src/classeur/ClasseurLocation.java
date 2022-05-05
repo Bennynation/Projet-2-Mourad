@@ -13,7 +13,7 @@ import entite.Vehicules;
 public class ClasseurLocation {
 	private List<Location> listlocation = new ArrayList<>();
 	
-	public void addCompte(Location loca)
+	public void addLocation(Location loca)
 	{
 		listlocation.add(loca);
 	}
