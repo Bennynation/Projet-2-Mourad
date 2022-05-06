@@ -206,13 +206,13 @@ public class MenuPrincipal extends JFrame {
 													// celui-ci suit le patern expert de l'information
 		if (compteUser != null) {
 			switch (compteUser.getDroit()) {
-			case 0: // Compe client
+			case 0: // Comtpe client
 				btnModifierClient.setVisible(true);
 				break;
-			case 1: // Compe gestionnaire
+			case 1: // Comtpe gestionnaire
 				btnModifierEtatVehicule.setVisible(true);
 				break;
-			case 2: // Compe prepose
+			case 2: // Comtpe prepose
 				btnFaireUneRservation.setVisible(true);
 				btnModificationReservation.setVisible(true);
 				btnLocation.setVisible(true);
