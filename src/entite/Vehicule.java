@@ -81,8 +81,11 @@ public class Vehicule {
 	public void setDispoSelonEtat() {
 		if (this.etat.equals("En service"))
 			this.dispo = true;
-		else
+		else {
 			this.dispo = false;
+			
+		}
+			
 	}
 
 	public double getTarif() {

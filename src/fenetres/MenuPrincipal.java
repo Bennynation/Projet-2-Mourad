@@ -32,6 +32,7 @@ import panel.ModifierEtat;
 import panel.ReservationPanel;
 import panel.RetourPanel;
 import javax.swing.SwingConstants;
+import java.awt.event.ActionListener;
 
 public class MenuPrincipal extends JFrame {
 	private static final long serialVersionUID = 1L;
@@ -46,7 +47,7 @@ public class MenuPrincipal extends JFrame {
 	private static JButton btnConnexion = new JButton("Connexion");
 	private static JButton btnModifierEtatVehicule = new JButton("Modifier l'\u00E9tat\r\r\n d'un v\u00E9hicule");
 	private static JButton btnFaireUneRservation = new JButton("Faire une r\u00E9servation");
-	private static JButton btnModificationReservation = new JButton("Modification RÃ©servation");
+	private static JButton btnModificationReservation = new JButton("Modification R\u00E9servation");
 	private static JButton btnModifierClient = new JButton("Modification d'un compte");
 	private static JButton btnLocation = new JButton("Faire une location");
 	private static JButton btnRetour = new JButton("Effectuer un retour");
@@ -108,6 +109,7 @@ public class MenuPrincipal extends JFrame {
 		btnModifierEtatVehicule.setBounds(0, 100, 190, 45);
 		panelMenu.add(btnModifierEtatVehicule);
 
+
 		btnFaireUneRservation.setVisible(false);
 		btnFaireUneRservation.addActionListener(e -> {
 			reset();
@@ -115,6 +117,7 @@ public class MenuPrincipal extends JFrame {
 		});
 		btnFaireUneRservation.setBounds(0, 150, 190, 45);
 		panelMenu.add(btnFaireUneRservation);
+
 
 		btnModificationReservation.setVisible(false);
 		btnModificationReservation.setBounds(0, 200, 190, 45);
@@ -133,6 +136,7 @@ public class MenuPrincipal extends JFrame {
 		});
 		panelMenu.add(btnModifierClient);
 
+
 		btnLocation.setVisible(false);
 		btnLocation.setBounds(0, 300, 190, 45);
 		btnLocation.addActionListener(e -> btnLocation());
@@ -150,9 +154,7 @@ public class MenuPrincipal extends JFrame {
 
 	public static void main(String[] args) {
 		// Test
-		listCompte.addCompte(new Prepose("a", 0, "", "", "", 0, "", "", "a", ""));
-		listCompte.addCompte(new Client("b", "", "", 0, 0, "", "", "", 0, "", "", "b", ""));
-		listCompte.addCompte(new Gestionnaire("c", 0, "", "", "", 0, "", "", "c", ""));
+
 
 		listCompte.addCompte(new Client("Client", "AFD510", "34543534543", 0, 1, "Legare", "Benoit", "Jean", 395,
 				"Trois-Riviï¿½res", "G8W5Y6", "123", "1"));
@@ -217,7 +219,7 @@ public class MenuPrincipal extends JFrame {
 				break;
 			default:
 			}
-			btnConnexion.setText("Dï¿½connexion");
+			btnConnexion.setText("Déconnexion");
 			contentPane.remove(co);
 			contentPane.revalidate();
 			contentPane.repaint();
