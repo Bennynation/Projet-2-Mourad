@@ -113,6 +113,7 @@ public class MenuPrincipal extends JFrame {
 		btnFaireUneRservation.setVisible(false);
 		btnFaireUneRservation.addActionListener(e -> {
 			reset();
+			reserv.resetDate();
 			load(reserv);
 		});
 		btnFaireUneRservation.setBounds(0, 150, 190, 45);
