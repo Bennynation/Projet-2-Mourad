@@ -5,57 +5,56 @@ import java.util.List;
 
 import entite.Client;
 import entite.Compte;
-import entite.Gestionnaire;
-import entite.Manager;
-import entite.Prepose;
 
 public class ClasseurCompte {
 	private List<Compte> listCompte = new ArrayList<>();
-	
-	
-	public List<Compte> getListe()
-	{
+
+	public List<Compte> getListe() {
 		return listCompte;
 	}
-	
-	public void addCompte(Compte compte)
-	{
+
+	public void addCompte(Compte compte) {
 		listCompte.add(compte);
 	}
-	
 
-	public Compte getCompte(String id,String mtp) {
+	public Compte getCompte(String id, String mtp) {
 		Compte co = null;
-		for (Compte c : listCompte) 
-		{ 
-		    if (c.getNomUtilisateur().equals(id) && c.getPass().equals(mtp)) {
-		    	co = c;
-		    }
+		for (Compte c : listCompte) {
+			if (c.getNomUtilisateur().equals(id) && c.getPass().equals(mtp)) {
+				co = c;
+			}
 		}
 		return co;
 	}
-	
-	public List<Client> getClientList()
-	{
-		List<Client> tmp = new ArrayList();
-		for(Compte c: listCompte)
-		{
-			if(c.getClass().equals(Client.class))
-			{
+
+	public List<Client> getClientList() {
+		List<Client> tmp = new ArrayList<>();
+		for (Compte c : listCompte) {
+			if (c.getClass().equals(Client.class)) {
 				tmp.add((Client) c);
 			}
 		}
 		return tmp;
 	}
-	public void setCompte(Compte co)
-	{
-		for (Compte c : listCompte) 
-		{ 
-		    if (c.getNomUtilisateur().equals(co.getNomUtilisateur()) && c.getPass().equals(co.getPass())) {
-		    	co = c;
-		    	break;
-		    }
+
+	public List<Client> getClientsParNumTel(String numTel) {
+		List<Client> clients = new ArrayList<>();
+
+		for (Compte co : listCompte) {
+			if (co instanceof Client cl && co.getNumTel().contains(numTel)) {
+				clients.add(cl);
+			}
 		}
+
+		return clients;
 	}
 
+	public Compte getCompteParId(int id) {
+		for (Compte c : listCompte) {
+			if (c.getId() == id) {
+				return c;
+			}
+		}
+		return null;
+	}
 }
