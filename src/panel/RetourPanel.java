@@ -113,9 +113,7 @@ public class RetourPanel extends JPanel {
 
 		Location l = lLocation.getSelectedValue();
 		int kilometrage = (int) spKilometrage.getValue();
-		if (MenuPrincipal.listFacture.faireFacture(l, kilometrage, BigDecimal.valueOf((Double) spCharge.getValue()))) {
-			lLocation.getSelectedValue().getVehicule().setDispo(true);
-			lLocation.getSelectedValue().setKm(kilometrage);
+		if (MenuPrincipal.listLocation.faireRetour(l, kilometrage, BigDecimal.valueOf((Double) spCharge.getValue()))) {
 			Notification.information("Retour effectuée",
 					"Le retour a été enregistré avec succès.\nLe montant de la facture s'élève à "
 							+ NumberFormat.getCurrencyInstance().format(l.getFacture().getMontant()));

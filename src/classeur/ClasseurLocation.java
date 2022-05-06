@@ -1,5 +1,6 @@
 package classeur;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -9,6 +10,7 @@ import entite.Client;
 import entite.Location;
 import entite.Vehicule;
 import exception.IdException;
+import fenetres.MenuPrincipal;
 
 public class ClasseurLocation {
 	private List<Location> listlocation = new ArrayList<>();
@@ -69,6 +71,15 @@ public class ClasseurLocation {
 		} catch (IdException e) {
 			return false;
 		}
+	}
+
+	public boolean faireRetour(Location l, int kilometrage, BigDecimal charges) {
+		if (MenuPrincipal.listFacture.faireFacture(l, kilometrage, charges)) {
+			l.getVehicule().setDispo(true);
+			l.setKm(kilometrage);
+			return true;
+		}
+		return false;
 	}
 
 	private int getUniqueId() throws IdException {
