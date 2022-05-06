@@ -28,8 +28,8 @@ import entite.Vehicule;
 import fenetres.MenuPrincipal;
 
 ////////////////////////////////////////////////////////////////////
-//Cas d'utilisation R�servation d'un v�hicule
-//Benoit L�gar�
+//Cas d'utilisation Reservation d'un vehicule
+//Benoit Legare
 ////////////////////////////////////////////////////////////////////
 
 public class ReservationPanel extends JPanel {
@@ -126,50 +126,33 @@ public class ReservationPanel extends JPanel {
 
 		JButton btReservation = new JButton("R\u00E9server");
 		btReservation.addActionListener(e -> {
-			if (!txtNom.getText().equals("")) { // V�rification qu'il y a bien une selection
-				if (dateCompare()) { // V�rification que la date de d�but est avant ou �gal � celle de fin
+			if (!txtNom.getText().equals("")) { // Verification qu'il y a bien une selection
+				if (dateCompare()) { // Verification que la date de debut est avant ou egal a celle de fin
 					Client c = (Client) cbClient.getSelectedItem();
-					if (c.getRetard() == 0) { // On v�rifie si le client a des retards
+					if (c.getRetard() == 0) { // On verifie si le client a des retards
+						// On verifie si le vehicule est toujours disponible pour les dates
+						// selectionnees
 						if (MenuPrincipal.listVehicule.dispo(id)
 								&& MenuPrincipal.listResrv.verifDateIdVehicule(id, dtDe.getDate(), dtA.getDate())
-								&& MenuPrincipal.listLocation.verifDateIdVehicule(id, dtDe.getDate(), dtA.getDate())) { // On
-																														// v�rifie
-																														// si
-																														// le
-																														// v�hicule
-																														// est
-																														// toujours
-																														// disponible
-																														// pour
-																														// les
-																														// dates
-																														// s�lectionn�es
+								&& MenuPrincipal.listLocation.verifDateIdVehicule(id, dtDe.getDate(), dtA.getDate())) {
+							// On ajoute la reservation au classeur de reservation puis on ajoute le contrat
+							// de la reservation au classeur de contrat
 							MenuPrincipal.listContrat.addContrat(c.getId(), MenuPrincipal.listResrv
-									.ajouterReservation(c.getId(), id, dtA.getDate(), dtDe.getDate())); // On ajoute la
-																										// r�servation
-																										// au classeur
-																										// de
-																										// r�servation,
-																										// puis on
-																										// ajoute le
-																										// contrat de la
-																										// r�servation
-																										// au classeur
-																										// de contrat
-							MenuPrincipal.confirmation("Vous avez faite une r�servation");
+									.ajouterReservation(c.getId(), id, dtA.getDate(), dtDe.getDate()));
+							MenuPrincipal.confirmation("Vous avez faite une r\u00E9servation");
 							resetDate();
 							btnRechercher.doClick();
 						} else {
-							MenuPrincipal.erreur("V�hicule non disponible");
+							MenuPrincipal.erreur("V\u00E9hicule non disponible");
 						}
 					} else {
-						MenuPrincipal.erreur("Vous avez des retards donc vous ne pouvez pas faire de r�servation");
+						MenuPrincipal.erreur("Vous avez des retards donc vous ne pouvez pas faire de r\u00E9servation");
 					}
 				} else {
-					MenuPrincipal.erreur("Veuillez mettre la date de d�but avant celle de la fin");
+					MenuPrincipal.erreur("Veuillez mettre la date de d\u00E9but avant celle de la fin");
 				}
 			} else {
-				MenuPrincipal.erreur("Veuillez s�lectionner un v�hicule");
+				MenuPrincipal.erreur("Veuillez s\u00E9lectionner un v\u00E9hicule");
 			}
 		});
 		btReservation.setBounds(331, 722, 128, 23);
@@ -191,13 +174,12 @@ public class ReservationPanel extends JPanel {
 
 		btnRechercher.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (dateCompare()) { // V�rification que la date de d�but est avant ou �gal � celle de fin
+				if (dateCompare()) { // Verification que la date de debut est avant ou egal a celle de fin
 					switch (cbType.getSelectedIndex()) {
 					case 0:
-						DefaultListModel listModel = new DefaultListModel() { // On affiche les v�hicules de tous types
-																				// qui sont disponibles, qui ne poss�de
-																				// pas de location/r�servation durant la
-																				// p�riode temps s�lectionn�e
+						// On affiche les vehicules de tous types qui sont disponibles, qui ne possede
+						// pas de location/reservation durant la periode temps selectionnee
+						DefaultListModel listModel = new DefaultListModel() {
 							private List<Vehicule> values = MenuPrincipal.listResrv
 									.verifReserv(MenuPrincipal.listLocation.verifLocation(
 											MenuPrincipal.listVehicule.afficherTousVehiculesDispo(), dtDe.getDate(),
@@ -215,10 +197,9 @@ public class ReservationPanel extends JPanel {
 						lVehicules.setModel(listModel);
 						break;
 					case 1:
-						DefaultListModel listModel1 = new DefaultListModel() { // On affiche les v�hicules de type
-																				// simple qui sont disponibles, qui ne
-																				// poss�de pas de location/r�servation
-																				// durant la p�riode temps s�lectionn�e
+						// On affiche les vehicules de type simple qui sont disponibles, qui ne possede
+						// pas de location/reservation durant la periode temps selectionnee
+						DefaultListModel listModel1 = new DefaultListModel() {
 							private List<Vehicule> values = MenuPrincipal.listResrv
 									.verifReserv(MenuPrincipal.listLocation.verifLocation(
 											MenuPrincipal.listVehicule.afficherSimpleVehiculesDispo(), dtDe.getDate(),
@@ -235,11 +216,9 @@ public class ReservationPanel extends JPanel {
 						lVehicules.setModel(listModel1);
 						break;
 					case 2:
-						DefaultListModel listModel2 = new DefaultListModel() { // On affiche les v�hicules de type
-																				// utilitaire qui sont disponibles, qui
-																				// ne poss�de pas de
-																				// location/r�servation durant la
-																				// p�riode temps s�lectionn�e
+						// On affiche les vehicules de type utilitaire qui sont disponibles, qui ne
+						// possede pas de location/reservation durant la periode temps selectionnee
+						DefaultListModel listModel2 = new DefaultListModel() {
 							private List<Vehicule> values = MenuPrincipal.listResrv
 									.verifReserv(MenuPrincipal.listLocation.verifLocation(
 											MenuPrincipal.listVehicule.afficherUtiliVehiculesDispo(), dtDe.getDate(),
@@ -256,10 +235,9 @@ public class ReservationPanel extends JPanel {
 						lVehicules.setModel(listModel2);
 						break;
 					case 3:
-						DefaultListModel listModel3 = new DefaultListModel() { // On affiche les v�hicules de type
-																				// prestige qui sont disponibles, qui ne
-																				// poss�de pas de location/r�servation
-																				// durant la p�riode temps s�lectionn�e
+						// On affiche les vehicules de type prestige qui sont disponibles, qui ne
+						// possede pas de location/reservation durant la periode temps selectionnee
+						DefaultListModel listModel3 = new DefaultListModel() {
 							private List<Vehicule> values = MenuPrincipal.listResrv
 									.verifReserv(MenuPrincipal.listLocation.verifLocation(
 											MenuPrincipal.listVehicule.afficherPrestigeVehiculesDispo(), dtDe.getDate(),
@@ -280,7 +258,7 @@ public class ReservationPanel extends JPanel {
 					txtDateD.setText(new SimpleDateFormat("dd/MM/yyyy").format(dtA.getDate()));
 					txtDateF.setText(new SimpleDateFormat("dd/MM/yyyy").format(dtDe.getDate()));
 				} else {
-					MenuPrincipal.erreur("Veuillez mettre la date de d�but avant celle de la fin");
+					MenuPrincipal.erreur("Veuillez mettre la date de debut avant celle de la fin");
 				}
 			}
 		});
@@ -359,7 +337,7 @@ public class ReservationPanel extends JPanel {
 		lbDesc.setBounds(252, 596, 148, 14);
 		add(lbDesc);
 
-		JLabel lblClient = new JLabel("Client ");
+		JLabel lblClient = new JLabel("Client");
 		lblClient.setBounds(252, 207, 222, 14);
 		add(lblClient);
 
@@ -388,7 +366,7 @@ public class ReservationPanel extends JPanel {
 
 	}
 
-	public void resetDate() { // Mets les dates � celle de aujourd'hui
+	public void resetDate() { // Mets les dates de celle de aujourd'hui
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		String date1 = dtf.format(LocalDateTime.now().plusDays(1));
 		java.util.Date util_StartDate;
@@ -405,7 +383,7 @@ public class ReservationPanel extends JPanel {
 		}
 	}
 
-	public boolean dateCompare() // Regarde si la date de d�but est avant celle de la fin
+	public boolean dateCompare() // Regarde si la date de debut est avant celle de la fin
 	{
 		return (dtA.getDate().before(dtDe.getDate()) || dtA.getDate().equals(dtDe.getDate()));
 	}
