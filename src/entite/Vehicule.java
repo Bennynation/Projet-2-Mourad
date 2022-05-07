@@ -83,9 +83,9 @@ public class Vehicule {
 			this.dispo = true;
 		else {
 			this.dispo = false;
-			
+
 		}
-			
+
 	}
 
 	public double getTarif() {

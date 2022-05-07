@@ -1,0 +1,9 @@
+Nom d'utilisateurs et mots de passe pour la connexion au programme :
+
+Type de compte	Nom d'utilisateur	Mot de passe
+-------------------------------------------------------
+Client		Client			123
+Client		FDA			123
+Manager		Manager			123
+Prepose		Prepose			123
+Gestion		Gestion			123

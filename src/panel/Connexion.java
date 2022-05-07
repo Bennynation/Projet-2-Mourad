@@ -1,3 +1,6 @@
+////////////////////////////////////////////////////////////////////
+// Benoit Legare
+////////////////////////////////////////////////////////////////////
 package panel;
 
 import javax.swing.JPanel;
@@ -36,7 +39,7 @@ public class Connexion extends JPanel {
 			if (!txtNom.getText().equals("")) { // Doit mettre un nom d'utilisateur
 				if (!passwordField.getText().equals("")) { // Doit mettre un mot de passe
 					MenuPrincipal.connexion(txtNom.getText(), passwordField.getText()); // On tente de se connecter
-																						// avec les infos donn�es
+																						// avec les infos donnees
 					txtNom.setText("");
 					passwordField.setText("");
 					if (MenuPrincipal.getCompteUser() == null)

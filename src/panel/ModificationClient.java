@@ -1,3 +1,4 @@
+//Nicolas Landry
 package panel;
 
 import java.awt.TextField;
@@ -92,7 +93,7 @@ public class ModificationClient extends JPanel {
 		this.setText();
 	}
 
-	// fait la modification du compte s�lectionn� du client;
+	// fait la modification du compte selectionne du client;
 	private void ModificationCompte() {
 		this.client.setFname(fnameTxt.getText());
 		this.client.setLname(lnameTxt.getText());
@@ -120,7 +121,7 @@ public class ModificationClient extends JPanel {
 		return value;
 	}
 
-	// Charge les valeurs li� au client dans les textBoxs du panel
+	// Charge les valeurs lie au client dans les textBoxs du panel
 	private void setText() {
 		if (client != null) {
 			lnameTxt.setText(client.getLname());
@@ -222,7 +223,7 @@ public class ModificationClient extends JPanel {
 		}
 	}
 
-	// Chercher le client qui est dans la fen�tre MenuPrincipal
+	// Chercher le client qui est dans la fenetre MenuPrincipal
 	public void setClient() {
 		if (MenuPrincipal.getCompteUser().getClass().equals(Client.class)) {
 			this.client = (Client) MenuPrincipal.getCompteUser();

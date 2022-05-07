@@ -1,3 +1,4 @@
+//Nicolas Landry
 package panel;
 
 import java.awt.Button;
@@ -66,7 +67,7 @@ public class ModificationReservation extends JPanel {
 		choice_1.setEnabled(false);
 		choice_1.setVisible(false);
 		/**
-		 * Met la liste des client dans un choice box afin de s�lectionn� un client afin
+		 * Met la liste des client dans un choice box afin de selectionne un client afin
 		 * de faire la recherche
 		 */
 		for (Client c : listClient.getListCompte()) {
@@ -74,10 +75,10 @@ public class ModificationReservation extends JPanel {
 		}
 		choice.setBounds(52, 68, 172, 20);
 		add(choice);
-		choice.add("Nom du V�hicule");
+		choice.add("Nom du V\u00E9hicule");
 		choice.add("Nom du client");
 		/**
-		 * Effectue le changement de visibilt� en fonction du type de r�servation
+		 * Effectue le changement de visibilte en fonction du type de reservation
 		 */
 		choice.addItemListener(new ItemListener() {
 
@@ -153,8 +154,8 @@ public class ModificationReservation extends JPanel {
 		choixVehicule.setBounds(306, 152, 230, 20);
 		add(choixVehicule);
 		/**
-		 * Met la liste des Vehicules dans un choice box afin de s�lectionn� un V�hicule
-		 * afin de modifi� la r�servation
+		 * Met la liste des Vehicules dans un choice box afin de selectionne un Vehicule
+		 * afin de modifie la reservation
 		 */
 		for (Vehicule v : listVehicule.getListVehicule()) {
 			choixVehicule.add(v.getNomVehicule() + " " + v.getType());
@@ -195,7 +196,7 @@ public class ModificationReservation extends JPanel {
 	}
 
 	/*
-	 * G�n�re une liste de r�servation selon le mode recherche effectuer
+	 * Genere une liste de reservation selon le mode recherche effectuer
 	 */
 	public void moteurDerecherche(int champ) {
 		NomClient.setText("");
@@ -255,11 +256,11 @@ public class ModificationReservation extends JPanel {
 	}
 
 	/*
-	 * G�n�re une liste de r�servation bas�e sur l'association de d'autre classe
-	 * afin de mieux manipul� et recevoir les informations selon les nom du Vehicule
+	 * Genere une liste de reservation basee sur l'association de d'autre classe
+	 * afin de mieux manipule et recevoir les informations selon les nom du Vehicule
 	 */
 	public void generationListFantomeVehicule(String nomVehicule) {
-		if (listResrvationFantome.isEmpty()) {
+		if (!listResrvationFantome.isEmpty()) {
 			listResrvationFantome.clear();
 		}
 		for (Reservation r : listResrv.getListReservation()) {
@@ -274,8 +275,8 @@ public class ModificationReservation extends JPanel {
 	}
 
 	/*
-	 * G�n�re une liste de r�servation bas�e sur l'association de d'autre classe
-	 * afin de mieux manipul� et recevoir les informations selon la classe Client
+	 * Genere une liste de reservation basee sur l'association de d'autre classe
+	 * afin de mieux manipule et recevoir les informations selon la classe Client
 	 */
 	public void generationListFantomeClient(Client client) {
 		if (!listResrvationFantome.isEmpty()) {
@@ -292,7 +293,7 @@ public class ModificationReservation extends JPanel {
 	}
 
 	/*
-	 * Met a jours les information de la r�servation dans Classeurs de r�servation
+	 * Met a jours les information de la reservation dans Classeurs de reservation
 	 * dans le menu principale.
 	 */
 	public void updateInfo() {

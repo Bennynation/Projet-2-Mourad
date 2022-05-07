@@ -102,8 +102,8 @@ public class ModifierEtat extends JPanel {
 		JButton btnModifier = new JButton("Modifier");
 		btnModifier.addActionListener(e -> {
 			if (!txtNom.getText().equals("")) { // Verifie la selection d'un vehicule
-				if (!txtDesc.getText().equals(desc) || !cbEtat.getSelectedItem().toString().equals(etat)) // Verifie s'il y a eu un changement
-				{
+				// Verifie s'il y a eu un changement
+				if (!txtDesc.getText().equals(desc) || !cbEtat.getSelectedItem().toString().equals(etat)) {
 					if (MenuPrincipal.getCompteUser().getDroit() == 1) {
 						MenuPrincipal.listVehicule.modifierEtat(id, cbEtat.getSelectedItem().toString(),
 								txtDesc.getText());
@@ -114,7 +114,7 @@ public class ModifierEtat extends JPanel {
 					MenuPrincipal.erreur("Veuillez faire une modification avant de modifier");
 				}
 			} else {
-				MenuPrincipal.erreur("Veuillez sélectionner un véhicule");
+				MenuPrincipal.erreur("Veuillez s\u00E9lectionner un v\u00E9hicule");
 			}
 		});
 		btnModifier.setBounds(368, 560, 89, 23);
@@ -195,7 +195,9 @@ public class ModifierEtat extends JPanel {
 		btnRechercher.setBounds(61, 94, 116, 23);
 		add(btnRechercher);
 
-		cbType.setModel(new DefaultComboBoxModel(new String[] { "Tout", "Simple", "Prestige", "Utilitaire" })); // Contient tous les types de vehicule
+		// Contient tous les types de vehicule
+		cbType.setModel(new DefaultComboBoxModel(new String[] { "Tout", "Simple", "Prestige", "Utilitaire" }));
+
 		cbType.setBounds(61, 61, 171, 22);
 		add(cbType);
 
@@ -208,11 +210,11 @@ public class ModifierEtat extends JPanel {
 		txtDesc.setBounds(258, 487, 295, 20);
 		add(txtDesc);
 
-		JLabel lbDesc = new JLabel("Description d'état");
+		JLabel lbDesc = new JLabel("Description d'\u00E9tat");
 		lbDesc.setBounds(258, 462, 148, 14);
 		add(lbDesc);
 
-		JLabel lblModifierLtatDun = new JLabel("Modifier l'état d'un véhicule");
+		JLabel lblModifierLtatDun = new JLabel("Modifier l'\u00E9tat d'un v\u00E9hicule");
 		lblModifierLtatDun.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblModifierLtatDun.setBounds(314, 22, 222, 14);
 		add(lblModifierLtatDun);
@@ -248,8 +250,10 @@ public class ModifierEtat extends JPanel {
 
 		lVehicules.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
 
+			// Lors du changement de l'index dans le tableau de vehicules on affiche les
+			// bonnes informations.
 			@Override
-			public void valueChanged(ListSelectionEvent e) { // Lors du changement de l'index dans le tableau de vehicules on affiche les bonnes informations.
+			public void valueChanged(ListSelectionEvent e) {
 				Vehicule v = (Vehicule) lVehicules.getSelectedValue();
 				if (v != null) {
 					txtNom.setText(v.getNomVehicule());

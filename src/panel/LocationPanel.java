@@ -1,3 +1,7 @@
+////////////////////////////////////////////////////////////////////
+// Cas d'utilisation Louer un vehicule
+// Lydia Godin
+////////////////////////////////////////////////////////////////////
 package panel;
 
 import javax.swing.JPanel;
@@ -63,7 +67,6 @@ public class LocationPanel extends JPanel {
 
 	}
 
-	// Frame size 760 800
 	public LocationPanel() {
 		setLayout(null);
 
@@ -76,7 +79,7 @@ public class LocationPanel extends JPanel {
 		add(tfNumTelephone);
 		tfNumTelephone.setColumns(10);
 
-		JLabel lblNewLabel2 = new JLabel("Numéro de téléphone du client");
+		JLabel lblNewLabel2 = new JLabel("Num\u00E9ro de t\u00E9l\u00E9phone du client");
 		lblNewLabel2.setBounds(26, 74, 226, 15);
 		add(lblNewLabel2);
 
@@ -95,12 +98,12 @@ public class LocationPanel extends JPanel {
 		lVehicules.setCellRenderer(new VehiculeListCellRenderer());
 		add(lVehicules);
 
-		JButton btRechercheVehicule = new JButton("Rechercher véhicule");
+		JButton btRechercheVehicule = new JButton("Rechercher v\u00E9hicule");
 		btRechercheVehicule.addActionListener(e -> btRechercheVehicule());
 		btRechercheVehicule.setBounds(418, 126, 311, 25);
 		add(btRechercheVehicule);
 
-		JLabel lblNewLabel = new JLabel("Numéro ou nom du véhicule");
+		JLabel lblNewLabel = new JLabel("Num\u00E9ro ou nom du v\u00E9hicule");
 		lblNewLabel.setBounds(418, 74, 210, 15);
 		add(lblNewLabel);
 
@@ -151,7 +154,8 @@ public class LocationPanel extends JPanel {
 		String numTelephone = tfNumTelephone.getText().trim();
 
 		if (numTelephone.isEmpty()) {
-			Notification.avertissement(Notification.MANQUE_INFOS, "Le champ du num\u00E9ro de téléphone est vide");
+			Notification.avertissement(Notification.MANQUE_INFOS,
+					"Le champ du num\u00E9ro de t\u00E9l\u00E9phone est vide");
 			return;
 		}
 
@@ -165,7 +169,7 @@ public class LocationPanel extends JPanel {
 		String nomVehicule = tfNomVehicule.getText().trim();
 
 		if (nomVehicule.isEmpty()) {
-			Notification.avertissement(Notification.MANQUE_INFOS, "Le champ du nom du véhicule est vide");
+			Notification.avertissement(Notification.MANQUE_INFOS, "Le champ du nom du v\u00E9hicule est vide");
 			return;
 		}
 
@@ -184,17 +188,18 @@ public class LocationPanel extends JPanel {
 
 		if (MenuPrincipal.listLocation.faireLocation(lVehicules.getSelectedValue(), lClients.getSelectedValue(),
 				dateLocation)) {
-			Notification.information("Location effectuée", "La location a été effectuée avec succès");
+			Notification.information("Location effectu\u00E9e",
+					"La location a \u00E9t\u00E9 effectu\u00E9e avec succ\u00E8s");
 			viderChamps();
 		} else {
-			Notification.erreur("Un problème est survenue lors de l'enregistrement de la location");
+			Notification.erreur("Un probl\u00E8me est survenue lors de l'enregistrement de la location");
 		}
 	}
 
 	private boolean champsSontValides(Date dateLocation) {
 		if (dateLocation.before(new Date())) {
 			Notification.avertissement(Notification.INFOS_INVALIDE,
-					"La date de fin de location doit être plus tard que maintenant");
+					"La date de fin de location doit \u00EAtre plus tard que maintenant");
 			return false;
 		}
 
@@ -206,13 +211,13 @@ public class LocationPanel extends JPanel {
 
 		if (lVehicules.isSelectionEmpty()) {
 			Notification.avertissement(Notification.MANQUE_INFOS,
-					"Aucun véhicule n'a \u00E9t\u00E9 s\u00E9lectionn\u00E9");
+					"Aucun v\u00E9hicule n'a \u00E9t\u00E9 s\u00E9lectionn\u00E9");
 			return false;
 		}
 
 		if (MenuPrincipal.listResrv.estReserveEntreDate(lVehicules.getSelectedValue(), new Date(), dateLocation)) {
-			Notification.avertissement("Véhicule réservé",
-					"Le v\u00E9hicule sélectionné n'est pas disponible jusqu'à la date entr\u00E9e");
+			Notification.avertissement("V\u00E9hicule r\u00E9serv\u00E9",
+					"Le v\u00E9hicule s\u00E9lectionn\u00E9 n'est pas disponible jusqu'\u00E0 la date entr\u00E9e");
 			return false;
 		}
 

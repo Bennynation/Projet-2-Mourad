@@ -1,3 +1,7 @@
+////////////////////////////////////////////////////////////////////
+// Cas d'utilisation Effectuer le retour d'un vehicule
+// Lydia Godin
+////////////////////////////////////////////////////////////////////
 package panel;
 
 import javax.swing.JPanel;
@@ -54,7 +58,7 @@ public class RetourPanel extends JPanel {
 		lLocation.setBounds(69, 185, 609, 360);
 		add(lLocation);
 
-		JButton btRetourner = new JButton("Retourner le véhicule");
+		JButton btRetourner = new JButton("Retourner le v\u00E9hicule");
 		btRetourner.addActionListener(e -> btRetourner());
 		btRetourner.setBounds(242, 690, 260, 25);
 		add(btRetourner);
@@ -62,7 +66,7 @@ public class RetourPanel extends JPanel {
 		spKilometrage.setBounds(242, 588, 260, 20);
 		add(spKilometrage);
 
-		JLabel lblNewLabel = new JLabel("Kilométrage");
+		JLabel lblNewLabel = new JLabel("Kilom\u00E9trage");
 		lblNewLabel.setBounds(242, 571, 95, 15);
 		add(lblNewLabel);
 
@@ -70,11 +74,11 @@ public class RetourPanel extends JPanel {
 		add(tfRechercheLocation);
 		tfRechercheLocation.setColumns(10);
 
-		JLabel lblNewLabel1 = new JLabel("Nom du véhicule ou du client");
+		JLabel lblNewLabel1 = new JLabel("Nom du v\u00E9hicule ou du client");
 		lblNewLabel1.setBounds(242, 58, 213, 15);
 		add(lblNewLabel1);
 
-		JLabel lblNewLabel2 = new JLabel("Charges supplémentaires");
+		JLabel lblNewLabel2 = new JLabel("Charges suppl\u00E9mentaires");
 		lblNewLabel2.setBounds(242, 628, 189, 15);
 		add(lblNewLabel2);
 
@@ -94,7 +98,8 @@ public class RetourPanel extends JPanel {
 		String motsRecherche = tfRechercheLocation.getText().trim();
 
 		if (motsRecherche.isEmpty()) {
-			Notification.avertissement(Notification.MANQUE_INFOS, "Le champ du num\u00E9ro de téléphone est vide");
+			Notification.avertissement(Notification.MANQUE_INFOS,
+					"Le champ du num\u00E9ro de t\u00E9l\u00E9phone est vide");
 			return;
 		}
 
@@ -114,12 +119,12 @@ public class RetourPanel extends JPanel {
 		Location l = lLocation.getSelectedValue();
 		int kilometrage = (int) spKilometrage.getValue();
 		if (MenuPrincipal.listLocation.faireRetour(l, kilometrage, BigDecimal.valueOf((Double) spCharge.getValue()))) {
-			Notification.information("Retour effectuée",
-					"Le retour a été enregistré avec succès.\nLe montant de la facture s'élève à "
+			Notification.information("Retour effectu\u00E9e",
+					"Le retour a \u00E9t\u00E9 enregistr\u00E9 avec succ\u00E8s.\nLe montant de la facture s'\u00E9l\u00E8ve \u00E0 "
 							+ NumberFormat.getCurrencyInstance().format(l.getFacture().getMontant()));
 			viderChamps();
 		} else {
-			Notification.erreur("Un problème est survenue lors de l'enregistrement du retour");
+			Notification.erreur("Un probl\u00E8me est survenue lors de l'enregistrement du retour");
 		}
 	}
 

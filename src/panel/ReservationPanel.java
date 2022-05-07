@@ -53,15 +53,14 @@ public class ReservationPanel extends JPanel {
 	private JTextField txtDateD = new JTextField();
 	private JTextField txtDateF = new JTextField();
 
-	
 	@Override
-    public void setBounds(int x, int y, int width, int height) {
+	public void setBounds(int x, int y, int width, int height) {
 		super.setBounds(x, y, width, height);
 		DefaultListModel listModel = new DefaultListModel() {
-			private List<Vehicule> values = MenuPrincipal.listResrv
-					.verifReserv(MenuPrincipal.listLocation.verifLocation(
-							MenuPrincipal.listVehicule.afficherTousVehiculesDispo(), dtDe.getDate(),
-							dtA.getDate()), dtDe.getDate(), dtA.getDate());
+			private List<Vehicule> values = MenuPrincipal.listResrv.verifReserv(
+					MenuPrincipal.listLocation.verifLocation(MenuPrincipal.listVehicule.afficherTousVehiculesDispo(),
+							dtDe.getDate(), dtA.getDate()),
+					dtDe.getDate(), dtA.getDate());
 
 			public int getSize() {
 				return values.size();
@@ -73,8 +72,8 @@ public class ReservationPanel extends JPanel {
 		};
 
 		lVehicules.setModel(listModel);
-    }
-	
+	}
+
 	public ReservationPanel() {
 		setLayout(null);
 
